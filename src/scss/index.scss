@@ -1,1 +1,79 @@
+// @use "./borders";
+@use "./fonts";
 
+// :root {
+//     --bs-border-width: 7px;
+// }
+
+$color-primary: #F0C9F1;
+$color-secondary: #FFEBFF;
+$color-speak-bubble: #484545;
+$color-body: #fff;
+$color-main: #fff;
+$color-skew-line: #fff;
+$color-text-light: #fff;
+$color-text-dark: #000;
+
+// .border-bottom {
+//     border-bottom: var(--bs-border-width);
+// }
+
+body {
+    background-color: $color-secondary;
+    font-family: "Inria Serif", serif;
+}
+
+.header {
+    background-color: $color-primary;
+    height: 50px;
+    &-inner {
+        background-color: $color-primary;
+        height: 100px;
+        transform: skewY(-2deg);
+    }
+    &-logo {
+        max-height: 80px;
+        min-height: 20px;
+        width: auto;
+        top: 20px;
+        left: 5%;
+    }
+}
+
+footer {
+    background-color: $color-primary;
+    height: 100px;
+}
+
+main {
+    background-color: $color-secondary;
+}
+
+.bg-log-in {
+    background-color: $color-primary;
+    height: auto;
+}
+
+// .card {
+//     background-color: $color-body;
+//     &-right {
+//         background-color: $color-secondary;
+//         transform: skew(15deg);
+//     }
+// }
+.card-right img {
+    // transform: skew(-15deg);
+    // position: absolute;
+    // right: 20px;
+    // top: 50px;
+}
+
+.card {
+    background-color: $color-body;
+    &-right {
+        // background-color: $color-secondary;
+        position: relative;
+        background: linear-gradient(70deg, transparent 20%, $color-secondary 20%);
+        display: flex;
+    }
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/dist/css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="container-fluid d-flex flex-column justify-content-between min-vh-100" style="
+padding-left: 0px;
+padding-right: 0px;
+">
+    <header class="header d-flex col-12">
+        <img src="/src/img/logo.png" class="col-12 position-absolute header-logo z-3">
+        <div class="header-inner position-relative border-bottom border-5 border-white w-100">
+
+        </div>
+    </header>
+    <main class="d-flex flex-column justify-content-center">
+        <div class="row mx-0">
+            <div class="container bg-log-in col-8 rounded-3 p-5">
+                <div class="card flex-row rounded-3 shadow h-100 col-12">
+                    <div class="card-left col-6 p-3">
+                        <h1 class="inria-serif-bold">WELCOME TO WOOPSIE</h1>
+                        <form>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">USERNAME:</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">PASSWORD:</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="sign-in d-flex align-items-center">
+                                <button type="submit" class="btn btn-primary">LOG IN</button>
+                                <p class="ms-2 mb-0">Or registrer new user here</p>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-right col-6 p-3 d-flex justify-content-end align-items-center">
+                        <img src="/src/img/bubbles-intro.png" class="img-fluid">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-inner border-top border-5 border-white"></div>
+    </footer>
+</body>
+
+</html>
