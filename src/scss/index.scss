@@ -54,7 +54,7 @@ main {
 //         transform: skew(15deg);
 //     }
 // }
-.card-right img {
+.card-right {
     // transform: skew(-15deg);
     // position: absolute;
     // right: 20px;
@@ -68,5 +68,8 @@ main {
         position: relative;
         background: linear-gradient(70deg, transparent 20%, $color-secondary 20%);
         display: flex;
+        >.img-fluid {
+            max-width: 90%;
+        }
     }
 }

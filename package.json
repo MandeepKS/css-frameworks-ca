@@ -25,7 +25,8 @@
   },
   "homepage": "https://github.com/NoroffFEU/css-frameworks-ca#readme",
   "dependencies": {
-    "bootstrap": "^5.3.3"
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3"
   },
   "devDependencies": {
     "sass": "^1.72.0"
