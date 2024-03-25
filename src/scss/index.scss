@@ -1,18 +1,11 @@
 // @use "./borders";
 @use "./fonts";
+@use "./feed";
+@import "./colors";
 
 // :root {
 //     --bs-border-width: 7px;
 // }
-
-$color-primary: #F0C9F1;
-$color-secondary: #FFEBFF;
-$color-speak-bubble: #484545;
-$color-body: #fff;
-$color-main: #fff;
-$color-skew-line: #fff;
-$color-text-light: #fff;
-$color-text-dark: #000;
 
 // .border-bottom {
 //     border-bottom: var(--bs-border-width);

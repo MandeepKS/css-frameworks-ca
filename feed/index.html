@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/dist/css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="container-fluid d-flex flex-column justify-content-between min-vh-100" style="
+padding-left: 0px;
+padding-right: 0px;
+">
+    <header class="header d-flex col-12">
+        <a href="/index.html"><img src="/src/img/logo-W-bubble.png"
+                class="col-12 position-absolute header-logo z-3"></a>
+        <div class="header-inner position-relative border-bottom border-5 border-white w-100">
+
+        </div>
+    </header>
+    <main>
+        <div class="container border-end border-start border-2 border-secondary vh-100 p-0 bg-white">
+            <div class="row mx-0 pt-4 w-100">
+                <div class="col-12 feed-post border-bottom d-flex align-items-center">
+                    <form class="mt-5 col-12 d-flex">
+                        <div class="newWoopsie col-sm-6 col-md-8 col-lg-10 ">
+                            <label for="woopsieInput" class="form-label" hidden>Email address</label>
+                            <input type="text" class="form-control" id="woopsieInput" aria-describedby="inputHelp"
+                                placeholder="What’s happening?">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Share</button>
+                    </form>
+                </div>
+                <div class="col-12 feed-search border-bottom w-100 d-flex align-items-center">
+                    <h1 class="h3 col-1 fw-bold m-0">Feed</h1>
+                    <form class="d-flex mx-3">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-inner border-top border-5 border-white">
+            <p>This the the footer</p>
+        </div>
+    </footer>
+</body>
+
+</html>
