@@ -1,0 +1,10 @@
+.bar {
+    max-height: 40px;
+    font-weight: 700;
+    &-feed {
+        background-color: $color-primary;
+    }
+    &-profile {
+        background-color: $color-secondary;
+    }
+}

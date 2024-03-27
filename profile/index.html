@@ -27,25 +27,14 @@ padding-right: 0px;
     <main>
         <div class="container border-end border-start border-2 border-secondary p-0 bg-white">
             <div class="row mx-0 pt-4 w-100">
-                <div class="col-12 feed-post border-bottom d-flex align-items-center px-5">
-                    <form class="mt-5 mb-2 col-12 d-flex justify-content-between align-items-center">
-                        <div class="newWoopsie col-sm-6 col-md-8 col-lg-10 ">
-                            <label for="woopsieInput" class="form-label" hidden>New Woopsie</label>
-                            <textarea class="form-control" id="woopsieInput" aria-describedby="inputHelp"
-                                placeholder="What’s happening?"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-outline-success px-4 h-50 ms-2">Share</button>
-                    </form>
+                <div class="col-12 feed-post border-bottom d-flex align-items-center p-0">
+                    <img src="/src/img/header-bg.png" class="img-fluid w-100">
                 </div>
-                <div class="col-12 feed-search border-bottom w-100 d-flex align-items-center px-5">
-                    <h1 class="h3 col-1 fw-bold m-0">Feed</h1>
-                    <!-- <form class="d-flex mx-3 col-6">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form> -->
+                <div class="col-12 bar-profile w-100 d-flex align-items-center px-5">
+                    <h1 class="h3 col-1 fw-bold m-0">Frida</h1>
                 </div>
             </div>
-            <div class="row w-100 h-100 mx-0 feed">
+            <div class="row flex-column-reverse flex-lg-row w-100 h-100 mx-0 feed">
                 <div class="col-lg-9 col-sm-12 feed-content px-5 pt-4">
                     <div class="feed-example mb-3">
                         <div class="publishedWoopsie w-100 border rounded p-3">
@@ -245,7 +234,11 @@ padding-right: 0px;
 
 
                 </div>
-                <div class="col-lg-3 col-sm-12 feed-menu pt-4">
+                <div class="col-lg-3 col-sm-12 feed-menu pt-4 position-relative">
+                    <div class="profile-img position-absolute">
+                        <img src="/src/img/profile-img-round.png" class="img-fluid">
+                    </div>
+                    <p class="fw-bold fst-italic mt-5 text-center">@fridafever</p>
                     <form class="d-flex mx-3 col-11">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
@@ -266,7 +259,7 @@ padding-right: 0px;
                                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                                 <path fill-rule="evenodd"
                                     d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-                            </svg> PROFILE</li>
+                            </svg> LOG OUT</li>
                     </ul>
                 </div>
             </div>
@@ -276,9 +269,9 @@ padding-right: 0px;
     <footer class="border-top border-5 border-white d-flex  h-100">
         <ul
             class="foooter-menu list-unstyled mb-0 d-flex w-100 h-100 justify-content-end align-items-center text-white p-3">
-            <li class="footer-menu-item p-2">T&C</li>
-            <li class="footer-menu-item p-2">About</li>
-            <li class="footer-menu-item p-2">Contact</li>
+            <li class="footer-menu-item p-2 text-center">T&C</li>
+            <li class="footer-menu-item p-2 text-center">About</li>
+            <li class="footer-menu-item p-2 text-center">Contact</li>
         </ul>
     </footer>
 </body>
