@@ -6,6 +6,8 @@
 @import "./topbar";
 @import "./profile";
 
+$link-decoration: none;
+$link-hover-decoration: italic;
 // :root {
 //     --bs-border-width: 7px;
 // }
@@ -17,6 +19,14 @@
 body {
     background-color: $color-secondary;
     font-family: "Inria Serif", serif;
+}
+
+a {
+    text-decoration: $link-decoration;
+    color: inherit;
+    &:hover {
+        font-style: $link-hover-decoration;
+    }
 }
 
 .header {

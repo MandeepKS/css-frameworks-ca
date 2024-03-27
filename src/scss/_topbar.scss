@@ -1,6 +1,7 @@
 .bar {
-    max-height: 40px;
     font-weight: 700;
+    min-height: 50px;
+    height: auto;
     &-feed {
         background-color: $color-primary;
     }
