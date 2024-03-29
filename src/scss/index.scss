@@ -5,6 +5,7 @@
 @import "./footer";
 @import "./topbar";
 @import "./profile";
+@import "./filler";
 
 $link-decoration: none;
 $link-hover-decoration: italic;
@@ -67,12 +68,7 @@ main {
 //         transform: skew(15deg);
 //     }
 // }
-.card-right {
-    // transform: skew(-15deg);
-    // position: absolute;
-    // right: 20px;
-    // top: 50px;
-}
+
 
 .card {
     background-color: $color-body;
