@@ -1,0 +1,18 @@
+@import "./colors";
+
+.form-check-input:checked {
+    background-color: $color-primary;
+    border-color: $color-secondary;
+}
+
+.form-check-input {
+    border: none;
+}
+
+
+.form-check-input:checked[type=radio] {
+    --bs-form-check-bg-image: none;
+}
+.form-check-input:focus {
+    box-shadow: none;
+}
