@@ -11,6 +11,11 @@
 
 $link-decoration: none;
 $link-hover-decoration: italic;
+
+:root {
+    --bs-btn-color: $color-primary;
+}
+
 // :root {
 //     --bs-border-width: 7px;
 // }
