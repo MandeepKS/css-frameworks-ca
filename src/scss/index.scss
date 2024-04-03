@@ -1,21 +1,17 @@
+@import "./customs";
 // @use "./borders";
-@use "./fonts";
-@use "./feed";
 @import "./colors";
+@import "./fonts";
+@import "./feed";
 @import "./footer";
 @import "./topbar";
 @import "./profile";
 @import "./filler";
 @import "./form";
 @import "./borders";
-// @import "./@media";
+@import "./root";
+@import "./links";
 
-$link-decoration: none;
-$link-hover-decoration: italic;
-
-:root {
-    --bs-btn-color: $color-primary;
-}
 
 // :root {
 //     --bs-border-width: 7px;
@@ -25,17 +21,9 @@ $link-hover-decoration: italic;
 //     border-bottom: var(--bs-border-width);
 // }
 
-body {
-    background-color: $color-secondary;
-    font-family: "Inria Serif", serif;
-}
 
-a {
-    text-decoration: $link-decoration;
-    color: inherit;
-    &:hover {
-        font-style: $link-hover-decoration;
-    }
+body {
+    font-family: $font-family-primary;
 }
 
 .header {
@@ -54,28 +42,17 @@ a {
         left: 5%;
     }
 }
-
-footer {
-    background-color: $color-primary;
-    height: 100px;
+.bg-primary {
+    background-color: $color-secondary !important;
 }
-
-main {
-    background-color: $color-secondary;
-}
+// main {
+//     background-color: $color-secondary;
+// }
 
 .bg-log-in {
     background-color: $color-primary;
     height: auto;
 }
-
-// .card {
-//     background-color: $color-body;
-//     &-right {
-//         background-color: $color-secondary;
-//         transform: skew(15deg);
-//     }
-// }
 
 
 .card {

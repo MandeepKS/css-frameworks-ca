@@ -1,0 +1,10 @@
+$link-decoration: none;
+$link-hover-decoration: italic;
+
+a {
+    text-decoration: $link-decoration;
+    color: inherit;
+    &:hover {
+        font-style: $link-hover-decoration;
+    }
+}
