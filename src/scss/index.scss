@@ -1,5 +1,4 @@
 @import "./customs";
-// @use "./borders";
 @import "./colors";
 @import "./fonts";
 @import "./feed";
@@ -8,18 +7,7 @@
 @import "./profile";
 @import "./filler";
 @import "./form";
-@import "./borders";
-@import "./root";
 @import "./links";
-
-
-// :root {
-//     --bs-border-width: 7px;
-// }
-
-// .border-bottom {
-//     border-bottom: var(--bs-border-width);
-// }
 
 
 body {
@@ -45,9 +33,6 @@ body {
 .bg-primary {
     background-color: $color-secondary !important;
 }
-// main {
-//     background-color: $color-secondary;
-// }
 
 .bg-log-in {
     background-color: $color-primary;
@@ -58,7 +43,6 @@ body {
 .card {
     background-color: $color-body;
     &-right {
-        // background-color: $color-secondary;
         position: relative;
         background: linear-gradient(70deg, transparent 20%, $color-secondary 20%);
         display: flex;

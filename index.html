@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Welcome to Woopsie!</title>
+    <link rel="icon" type="image" href="/src/img/logo-W-bubble.png">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/dist/css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,13 +32,14 @@ padding-right: 0px;
                         <h1 class="inria-serif-bold h2">WELCOME TO WOOPSIE</h1>
                         <form action="/profile/">
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">USERNAME:</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                <label for="username" class="form-label">USERNAME:</label>
+                                <input type="text" class="form-control" id="username" aria-describedby="usernamehelp"
+                                    aria-required="true" required>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">PASSWORD:</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1">
+                                <label for="password-input" class="form-label">PASSWORD:</label>
+                                <input type="password" class="form-control" id="password-input" aria-required="true"
+                                    minlength="8" required>
                             </div>
                             <div class="sign-in d-flex flex-wrap align-items-center">
                                 <button type="submit" class="btn btn-primary">LOG IN</button>
