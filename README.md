@@ -1,5 +1,5 @@
 # Woopsie, a social media application
-![image](https://onedrive.live.com/embed?resid=6948ab603e194695%2190842&authkey=%21AG7DKBpj8EoM9j8&width=660)
+![image](https://onedrive.live.com/embed?resid=6948ab603e194695%2190842&authkey=%21AG7DKBpj8EoM9j8&width=660)<br>
 Noroff CSS Frameworks CA, April 2024<br>
 
 ## Description
