@@ -1,0 +1,16 @@
+.header {
+    background-color: $color-primary;
+    height: 50px;
+    &-inner {
+        background-color: $color-primary;
+        height: 100px;
+        transform: skewY(-2deg);
+    }
+    &-logo {
+        max-height: 80px;
+        min-height: 20px;
+        width: auto;
+        top: 20px;
+        left: 5%;
+    }
+}

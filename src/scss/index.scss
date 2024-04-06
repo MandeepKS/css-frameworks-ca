@@ -9,46 +9,9 @@
 @import "./form";
 @import "./links";
 @import "./buttons";
+@import "./header";
+@import "./login";
 
-
-body {
-    font-family: $font-family-primary;
-}
-
-.header {
-    background-color: $color-primary;
-    height: 50px;
-    &-inner {
-        background-color: $color-primary;
-        height: 100px;
-        transform: skewY(-2deg);
-    }
-    &-logo {
-        max-height: 80px;
-        min-height: 20px;
-        width: auto;
-        top: 20px;
-        left: 5%;
-    }
-}
 .bg-primary {
     background-color: $color-secondary !important;
-}
-
-.bg-log-in {
-    background-color: $color-primary;
-    height: auto;
-}
-
-
-.card {
-    background-color: $color-body;
-    &-right {
-        position: relative;
-        background: linear-gradient(70deg, transparent 20%, $color-secondary 20%);
-        display: flex;
-        >.img-fluid {
-            max-width: 90%;
-        }
-    }
 }

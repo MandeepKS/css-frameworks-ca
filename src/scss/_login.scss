@@ -1,0 +1,16 @@
+.bg-log-in {
+    background-color: $color-primary;
+}
+
+
+.card {
+    background-color: $color-body;
+    &-right {
+        position: relative;
+        background: linear-gradient(70deg, transparent 20%, $color-secondary 20%);
+        // display: flex;
+        >.img-fluid {
+            max-width: 90%;
+        }
+    }
+}
