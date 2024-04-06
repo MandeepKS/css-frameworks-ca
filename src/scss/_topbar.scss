@@ -5,10 +5,13 @@
     &-feed {
         background-color: $color-primary;
     }
-    &-profile {
-        background-color: $color-secondary;
-        @media only screen and (max-width: 991px) {
-            background-color: $color-primary;
+     &-profile {
+        background-color: $color-primary;  
+    }
+
+    @include media-breakpoint-up(lg) {
+        &-profile {
+            background-color: $color-secondary; 
         }
     }
 }
