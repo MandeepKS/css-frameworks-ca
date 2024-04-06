@@ -14,7 +14,7 @@ The social media contains sites as:
 - HTML/SCSS
 - Bootstrap
 
-- ## Getting Started
+## Getting Started
 
 ### Installing
 
