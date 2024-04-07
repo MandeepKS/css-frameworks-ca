@@ -28,7 +28,12 @@ git clone https://github.com/Berrinj/css-frameworks.git
 
 1. Clone the repo
 2. Run repo in a code editor, I suggest using "VScode".
-3. Choose index.html and open in live server.
+3. With npm,  run this in the terminal:<br>
+npm install bootstrap<br>
+npm install -D sass<br>
+npm run build<br>
+
+4. Choose index.html and open in live server.
 
 ## Contributing
 
