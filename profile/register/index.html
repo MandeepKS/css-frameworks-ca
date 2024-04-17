@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register new Woopsie Profile!</title>
+    <link rel="icon" type="image" href="/src/img/logo-W-bubble.png">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/dist/css/index.css">
+    <script src="/src/js/index.mjs" type="module"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="container-fluid d-flex flex-column justify-content-between min-vh-100 bg-primary" style="
+padding-left: 0px;
+padding-right: 0px;
+">
+    <header class="header d-flex col-12">
+        <img src="/src/img/logo.png" class="col-12 position-absolute header-logo z-3" alt="Woopsie logo letter W">
+        <div class="header-inner position-relative border-bottom border-5 border-white w-100">
+
+        </div>
+    </header>
+    <main class="d-flex flex-column justify-content-center">
+        <div class="row mx-1 mt-5">
+            <div class="container bg-log-in col-11 col-sm-8 rounded-3 p-2 p-sm-3 p-xl-4" style="max-width: 1200px">
+                <div class="card flex-lg-row rounded-3 shadow h-100 col-12 justify-content-center">
+                    <div class="card-left col-12 col-lg-6 p-4">
+                        <h1 class="inria-serif-bold h2">REGISTER TO WOOPSIE</h1>
+                        <div class="login-form">
+
+                            <form id="registerForm">
+
+                                <div class="form-group mb-3">
+                                    <label for="username" class="form-label">Create Username:</label>
+                                    <input type="text" name="name" class="form-control" id="username"
+                                        aria-required="true" required pattern="^[\w]+$"
+                                        title="The username can not contain punctuation symbols apart from underscore (_).">
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="email" class="form-label">Email:</label>
+                                    <input type="email" name="email" class="form-control" id="email"
+                                        aria-required="true" required pattern="^[\w\-.]+@(stud.)?noroff.no$"
+                                        title="Only emails ending in stud.noroff.no or noroff.no can register.">
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="password" class="form-label">Create Password:</label>
+                                    <input type="password" name="password" class="form-control" id="password"
+                                        aria-required="true" minlength="8" required>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="banner" class="form-label">Add banner:</label>
+                                    <input type="url" name="banner" class="form-control" id="banner">
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="avatar" class="form-label">Add avatar:</label>
+                                    <input type="url" name="avatar" class="form-control" id="avatar">
+                                </div>
+
+                                <div class="sign-in d-flex flex-wrap align-items-center justify-content-center">
+                                    <form action="/profile/" method="post">
+                                        <button type="submit" class="btn btn-primary">REGISTER</button>
+                                        <p class="ms-2 mb-0 fst-italic"><a href="/profile/login">Or login here</a></p>
+                                </div>
+                                <!--
+    {
+    "name": "my_username", // Required
+    "email": "first.last@stud.noroff.no", // Required
+    "password": "UzI1NiIsInR5cCI", // Required
+    "avatar": "https://img.service.com/avatar.jpg", // Optional
+    "banner": "https://img.service.com/banner.jpg" // Optional
+    }
+-->
+                            </form>
+                        </div>
+                    </div>
+                    <!-- <div class="card-right col-12 col-lg-6 p-3 d-flex justify-content-end align-items-center">
+                        <img src="/src/img/bubbles-intro.png" class="img-fluid"
+                            alt="For all the woopsies we make, that is too good to not share, this is the place, welcome!">
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="col-12 border-top border-5 border-white d-flex mx-auto">
+        <div class="menu-container container col-12" style="max-width: 2000px">
+            <ul
+                class="foooter-menu list-unstyled mb-0 d-flex flex-wrap w-100 h-100 justify-content-end align-items-center text-white p-1">
+                <li class="col-4 col-sm-2 col-lg-1 footer-menu-item p-2">T&C</li>
+                <li class="col-4 col-sm-2 col-lg-1 footer-menu-item p-2">About</li>
+                <li class="col-4 col-sm-2 col-lg-1 footer-menu-item p-2">Contact</li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>

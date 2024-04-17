@@ -1,0 +1,18 @@
+//this code should probably be in a customs folder with the _customs.scss file
+
+.form-check-input:checked {
+    background-color: $color-primary;
+    border-color: $color-secondary;
+}
+
+.form-check-input {
+    border: 1px solid $color-primary;
+}
+
+
+.form-check-input:checked[type=radio] {
+    --bs-form-check-bg-image: none;
+}
+.form-check-input:focus {
+    box-shadow: none;
+}

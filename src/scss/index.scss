@@ -1,84 +1,19 @@
-// @use "./borders";
-@use "./fonts";
-@use "./feed";
+@import "./customs";
 @import "./colors";
+@import "./fonts";
+@import "./feed";
 @import "./footer";
 @import "./topbar";
 @import "./profile";
 @import "./filler";
+@import "./form";
+@import "./links";
+@import "./buttons";
+@import "./header";
+@import "./login";
+@import "./navbar";
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-$link-decoration: none;
-$link-hover-decoration: italic;
-// :root {
-//     --bs-border-width: 7px;
-// }
-
-// .border-bottom {
-//     border-bottom: var(--bs-border-width);
-// }
-
-body {
-    background-color: $color-secondary;
-    font-family: "Inria Serif", serif;
-}
-
-a {
-    text-decoration: $link-decoration;
-    color: inherit;
-    &:hover {
-        font-style: $link-hover-decoration;
-    }
-}
-
-.header {
-    background-color: $color-primary;
-    height: 50px;
-    &-inner {
-        background-color: $color-primary;
-        height: 100px;
-        transform: skewY(-2deg);
-    }
-    &-logo {
-        max-height: 80px;
-        min-height: 20px;
-        width: auto;
-        top: 20px;
-        left: 5%;
-    }
-}
-
-footer {
-    background-color: $color-primary;
-    height: 100px;
-}
-
-main {
-    background-color: $color-secondary;
-}
-
-.bg-log-in {
-    background-color: $color-primary;
-    height: auto;
-}
-
-// .card {
-//     background-color: $color-body;
-//     &-right {
-//         background-color: $color-secondary;
-//         transform: skew(15deg);
-//     }
-// }
-
-
-.card {
-    background-color: $color-body;
-    &-right {
-        // background-color: $color-secondary;
-        position: relative;
-        background: linear-gradient(70deg, transparent 20%, $color-secondary 20%);
-        display: flex;
-        >.img-fluid {
-            max-width: 90%;
-        }
-    }
+.bg-primary {
+    background-color: $color-secondary !important;
 }

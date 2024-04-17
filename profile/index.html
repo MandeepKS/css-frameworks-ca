@@ -5,53 +5,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="icon" type="image" href="/src/images/logo-W-bubble.png">
     <link rel="stylesheet" href="/dist/css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
 </head>
 
-<body class="container-fluid d-flex flex-column justify-content-between min-vh-100" style="
-padding-left: 0px;
-padding-right: 0px;
-">
+<body class="container-fluid d-flex flex-column justify-content-between min-vh-100" style="padding-left: 0px;
+    padding-right: 0px;">
     <header class="header d-flex col-12">
-        <a href="/index.html"><img src="/src/img/logo-W-bubble.png"
-                class="col-12 position-absolute header-logo z-3"></a>
-        <div class="header-inner position-relative border-bottom border-5 border-white w-100">
-
+        <a href="/feed/index.html"><img src="/src/images/logo-W-bubble.png"
+                class="col-12 position-absolute header-logo z-3" alt="W logo"></a>
+        <div class="header-inner border-bottom border-5 border-white w-100">
         </div>
     </header>
-    <main>
-        <div class="container border-end border-start border-2 border-secondary p-0 bg-white">
-            <div class="row mx-0 pt-4 w-100">
-                <div class="col-12 feed-post border-bottom d-flex align-items-center p-0">
-                    <img src="/src/img/header-bg.png" class="img-fluid w-100">
+    <main class="d-flex flex-grow-1 bg-primary">
+        <div class="container d-flex flex-column border-end border-start border-2 border-secondary p-0 bg-white">
+            <div class="row mx-0 col-12">
+                <div class="col-12 border-bottom d-flex align-items-center p-0">
+                    <img src="/src/images/header-bg.png" class="col-12 object-fit-cover profile-header-img"
+                        alt="profile header image">
                 </div>
-                <div class="col-12 bar bar-profile w-100 px-5 ">
-                    <div class="name-stats h-100 col-12 col-lg-9  d-flex align-items-center justify-content-between">
-                        <div class="profile-name">
-                            <h1 class="h3 col-1 fw-bold m-0">Frida</h1>
+                <div class="col-12 bar bar-profile w-100 px-3 px-sm-5 ">
+                    <div
+                        class="name-stats h-100 col-12 col-lg-9 d-flex flex-wrap align-items-center justify-content-between">
+                        <div class="profile-name me-2">
+                            <h1 class="h3 fw-bold m-0">Frida</h1>
                         </div>
-                        <div class="follow-stats gap-3 d-flex flex-lg-row flex-column">
-                            <p class="m-0 ">702 following</p>
+                        <div class="follow-stats gap-3 d-flex flex-wrap fst-italic">
+                            <p class="m-0">702 following</p>
                             <p class="m-0">1,699 followers</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row flex-column-reverse flex-lg-row w-100 h-100 mx-0 feed">
-                <div class="col-lg-9 col-sm-12 feed-content px-5 pt-4">
+            <div class="row flex-column-reverse flex-lg-row flex-grow-1 w-100 mx-0 feed">
+                <div class="col-12 col-lg-9 feed-content px-3 px-sm-5 pt-4">
+                    <div class="p-feed-choices d-flex flex-wrap justify-content-between p-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sortWoopsies" id="radioWoopsies" checked>
+                            <label class="form-check-label" for="radioWoopsies">
+                                Woopsies
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sortWoopsies" id="radioReplies">
+                            <label class="form-check-label" for="radioReplies">
+                                Replies
+                            </label>
+                        </div>
+                    </div>
                     <div class="feed-example mb-3">
                         <div class="publishedWoopsie w-100 border rounded p-3">
-                            <div class="name-date d-flex align-items-center">
+                            <div class="name-date d-flex flex-wrap align-items-center">
+                                <img src="/src/images/profile-img-round.png" class="feed-image me-1"
+                                    alt="profile-image">
                                 <h4 class="fw-bold h5 me-2 mb-0">Frida</h4>
-                                <small class="text-muted">04.08.2023</small>
+                                <p class="mb-0 pe-2 small">@fridafever</p>
+                                <small class="text-muted">1d</small>
                             </div>
 
-                            <p class="m-0">Can't belive I got the job guys!!</p>
+                            <p class="m-0 pt-1">Can't belive I got the job guys!!</p>
                         </div>
                         <div class="feed-interact d-flex justify-content-between p-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -74,12 +91,18 @@ padding-right: 0px;
 
                     <div class="feed-example mb-3">
                         <div class="publishedWoopsie w-100 border rounded p-3">
-                            <div class="name-date d-flex align-items-center">
+                            <div class="name-date d-flex flex-wrap align-items-center">
+                                <img src="/src/images/profile-img-round.png" class="feed-image me-1"
+                                    alt="profile-image">
                                 <h4 class="fw-bold h5 me-2 mb-0">Frida</h4>
-                                <small class="text-muted">04.08.2023</small>
+                                <p class="mb-0 pe-2 small">@fridafever</p>
+                                <small class="text-muted">2d</small>
                             </div>
 
-                            <p class="m-0">Can't belive I got the job guys!!</p>
+                            <p class="m-0 pt-1">Age is an opportunity to grow, evolve, and become the best version of
+                                yourself. At 34, I'm more confident, more resilient, and more grateful than ever before.
+                                Here's to embracing every challenge and celebrating every victory! 💪🎉 #GrowthMindset
+                                #ConfidentAtAnyAge</p>
                         </div>
                         <div class="feed-interact d-flex justify-content-between p-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -102,12 +125,18 @@ padding-right: 0px;
 
                     <div class="feed-example mb-3">
                         <div class="publishedWoopsie w-100 border rounded p-3">
-                            <div class="name-date d-flex align-items-center">
+                            <div class="name-date d-flex flex-wrap align-items-center">
+                                <img src="/src/images/profile-img-round.png" class="feed-image me-1"
+                                    alt="profile-image">
                                 <h4 class="fw-bold h5 me-2 mb-0">Frida</h4>
-                                <small class="text-muted">04.08.2023</small>
+                                <p class="mb-0 pe-2 small">@fridafever</p>
+                                <small class="text-muted">3d</small>
                             </div>
 
-                            <p class="m-0">Can't belive I got the job guys!!</p>
+                            <p class="m-0 pt-1">Woke up this morning feeling grateful for the little things: sunshine on
+                                my
+                                face, coffee in my cup, and endless possibilities ahead. Let's make today amazing! ☀️☕️✨
+                                #Gratitude #LifeIsBeautiful</p>
                         </div>
                         <div class="feed-interact d-flex justify-content-between p-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -130,12 +159,18 @@ padding-right: 0px;
 
                     <div class="feed-example mb-3">
                         <div class="publishedWoopsie w-100 border rounded p-3">
-                            <div class="name-date d-flex align-items-center">
+                            <div class="name-date d-flex flex-wrap align-items-center">
+                                <img src="/src/images/profile-img-round.png" class="feed-image me-1"
+                                    alt="profile-image">
                                 <h4 class="fw-bold h5 me-2 mb-0">Frida</h4>
-                                <small class="text-muted">04.08.2023</small>
+                                <p class="mb-0 pe-2 small">@fridafever</p>
+                                <small class="text-muted">4d</small>
                             </div>
 
-                            <p class="m-0">Can't belive I got the job guys!!</p>
+                            <p class="m-0 pt-1">Embracing the beauty of imperfection today. Life isn't about being
+                                flawless;
+                                it's about being authentically you. Here's to embracing our quirks and living boldly! 💖
+                                #Authenticity #SelfLove</p>
                         </div>
                         <div class="feed-interact d-flex justify-content-between p-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -158,12 +193,18 @@ padding-right: 0px;
 
                     <div class="feed-example mb-3">
                         <div class="publishedWoopsie w-100 border rounded p-3">
-                            <div class="name-date d-flex align-items-center">
+                            <div class="name-date d-flex flex-wrap align-items-center">
+                                <img src="/src/images/profile-img-round.png" class="feed-image me-1"
+                                    alt="profile-image">
                                 <h4 class="fw-bold h5 me-2 mb-0">Frida</h4>
-                                <small class="text-muted">04.08.2023</small>
+                                <p class="mb-0 pe-2 small">@fridafever</p>
+                                <small class="text-muted">5d</small>
                             </div>
 
-                            <p class="m-0">Can't belive I got the job guys!!</p>
+                            <p class="m-0 pt-1">Life's too short to sweat the small stuff. Today, I'm focusing on what
+                                truly
+                                matters: love, laughter, and making memories. Here's to living in the moment and
+                                cherishing every second! 💕✨ #CarpeDiem #CherishEveryMoment</p>
                         </div>
                         <div class="feed-interact d-flex justify-content-between p-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -186,12 +227,18 @@ padding-right: 0px;
 
                     <div class="feed-example mb-3">
                         <div class="publishedWoopsie w-100 border rounded p-3">
-                            <div class="name-date d-flex align-items-center">
+                            <div class="name-date d-flex flex-wrap align-items-center">
+                                <img src="/src/images/profile-img-round.png" class="feed-image me-1"
+                                    alt="profile-image">
                                 <h4 class="fw-bold h5 me-2 mb-0">Frida</h4>
-                                <small class="text-muted">04.08.2023</small>
+                                <p class="mb-0 pe-2 small">@fridafever</p>
+                                <small class="text-muted">5d</small>
                             </div>
 
-                            <p class="m-0">Can't belive I got the job guys!!</p>
+                            <p class="m-0 pt-1">Life's journey is filled with twists and turns, but every experience
+                                shapes
+                                us into who we are meant to be. Cheers to embracing the adventure, embracing change, and
+                                embracing the beautiful messiness of life! 🌟🌈 #LifeIsAJourney #EmbraceChange</p>
                         </div>
                         <div class="feed-interact d-flex justify-content-between p-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -214,12 +261,17 @@ padding-right: 0px;
 
                     <div class="feed-example mb-3">
                         <div class="publishedWoopsie w-100 border rounded p-3">
-                            <div class="name-date d-flex align-items-center">
+                            <div class="name-date d-flex flex-wrap align-items-center">
+                                <img src="/src/images/profile-img-round.png" class="feed-image me-1"
+                                    alt="profile-image">
                                 <h4 class="fw-bold h5 me-2 mb-0">Frida</h4>
-                                <small class="text-muted">04.08.2023</small>
+                                <p class="mb-0 pe-2 small">@fridafever</p>
+                                <small class="text-muted">7d</small>
                             </div>
 
-                            <p class="m-0">Can't belive I got the job guys!!</p>
+                            <p class="m-0 pt-1">Had the last interview for a job I applied to last week and dying to
+                                hear
+                                back from them.. Wish me luck!!</p>
                         </div>
                         <div class="feed-interact d-flex justify-content-between p-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -242,46 +294,53 @@ padding-right: 0px;
 
 
                 </div>
-                <div class="col-lg-3 col-sm-12 feed-menu pt-4 position-relative">
-                    <div class="profile-img position-absolute d-flex justify-content-center start-0 end-0">
-                        <img src="/src/img/profile-img-round.png" class="img-fluid">
+                <div class="col-12 col-lg-3 feed-menu pt-4">
+                    <div class="profile-img d-flex justify-content-center start-0 end-0">
+                        <img src="/src/images/profile-img-round.png" class="img-fluid mt-lg-n7"
+                            alt="Profile user image">
                     </div>
-                    <p class="fw-bold fst-italic mt-5 text-center">@fridafever</p>
+                    <p class="fw-bold fst-italic text-center pt-2">@fridafever</p>
+                    <div class="p-3 bio text-center">
+                        <p>Hi, I’m a 34yo woman from Norway living my best life</p>
+                    </div>
+                    <div class="follow-button d-flex justify-content-center mb-3">
+                        <input class="col-4 col-sm-3 col-lg-4 btn btn-primary" type="submit" value="Follow">
+                    </div>
                     <form class="d-flex mx-3 col-11">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
-                    <ul class="list-unstyled p-3 ">
-                        <li class="h5"><a href="/feed/" class="text-decoration-none"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-house-door" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z" />
-                                </svg> FEED</a></li>
-                        <li class="h5"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
-                                <path
-                                    d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6" />
-                            </svg> NOTIFICATIONS</li>
-                        <li class="h5"><a href="/index.html"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                    height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                                    <path fill-rule="evenodd"
-                                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-                                </svg> LOG OUT</a></li>
-                    </ul>
+                    <div class="navbar">
+                        <ul
+                            class="list-unstyled mb-0 p-3 d-flex flex-column flex-sm-row flex-lg-column justify-content-around w-100">
+                            <li class="nav-item"><a href="/feed/" class="nav-link d-flex align-items-center gap-1"><i
+                                        class="bi bi-house-door"></i> FEED</a></li>
+                            <li class="nav-item"><a href="/profile/"
+                                    class="nav-link active d-flex align-items-center gap-1"><i
+                                        class="bi bi-person-circle"></i>PROFILE</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link d-flex align-items-center gap-1"><i
+                                        class="bi bi-bell"></i>NOTIFICATIONS</a>
+                            </li>
+                            <li class="nav-item"><a href="/index.html"
+                                    class="nav-link d-flex align-items-center gap-1"><i
+                                        class="bi bi-box-arrow-left"></i> LOG OUT</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+
         </div>
     </main>
 
-    <footer class="border-top border-5 border-white d-flex  h-100">
-        <ul
-            class="foooter-menu list-unstyled mb-0 d-flex w-100 h-100 justify-content-end align-items-center text-white p-3">
-            <li class="footer-menu-item p-2 text-center">T&C</li>
-            <li class="footer-menu-item p-2 text-center">About</li>
-            <li class="footer-menu-item p-2 text-center">Contact</li>
-        </ul>
+    <footer class="border-top border-5 border-white d-flex mt-auto">
+        <div class="menu-container container col-12" style="max-width: 2000px">
+            <ul
+                class="foooter-menu list-unstyled mb-0 d-flex flex-wrap w-100 h-100 justify-content-end align-items-center text-white p-1">
+                <li class="col-4 col-sm-2 col-lg-1 footer-menu-item p-2">T&C</li>
+                <li class="col-4 col-sm-2 col-lg-1 footer-menu-item p-2">About</li>
+                <li class="col-4 col-sm-2 col-lg-1 footer-menu-item p-2">Contact</li>
+            </ul>
+        </div>
     </footer>
 </body>
 
