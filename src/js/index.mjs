@@ -15,18 +15,18 @@ const path = location.pathname;
 // post.createPost();
 // post.updatePost();
 // post.removePost();
-post.displayPost(11909).then(console.log);
+// post.displayPost(11909).then(console.log);
 // post.displayPosts().then(console.log);
 
-// createPost({
+// post.createPost({
 //   title: "My first post",
 //   body: "This is my first post",
 // });
 
-// updatePost({
-//   id: "11938",
-//   title: "My first post UPDATED",
-//   body: "This is my first post UPDATED",
+// post.updatePost({
+//   id: "11940",
+//   title: "My first post UPDATED twice",
+//   body: "This is my first post UPDATED twice",
 // });
 
-// removePost(11938);
+// post.removePost(11940);
