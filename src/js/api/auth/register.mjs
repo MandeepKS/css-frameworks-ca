@@ -3,10 +3,11 @@ import { API_SOCIAL } from "../constants.mjs";
 
 const action = "/auth/register";
 const method = "post";
-
+const registerURL = API_SOCIAL + action;
 
 export async function register(profile) {  
-    const registerURL = API_SOCIAL + action;
+  try {
+   
     const body = JSON.stringify(profile);
     const response = await fetch(registerURL, {
         headers: {
@@ -18,4 +19,9 @@ export async function register(profile) {
 
     const result = await response.json();
     console.log(result);   
+    return result;
+} catch (error) {
+    console.log(error); 
 }
+}
+
