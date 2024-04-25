@@ -5,23 +5,19 @@ const action = "/auth/login";
 const method = "post";
 
 export async function login(profile) {
-  try {
-    const loginURL = API_SOCIAL + action;
-    const body = JSON.stringify(profile);
-    const response = await fetch(loginURL, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method,
-      body,
-    });
+  const loginURL = API_SOCIAL + action;
+  const body = JSON.stringify(profile);
+  const response = await fetch(loginURL, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method,
+    body,
+  });
 
-    // const result = await response.json();
-    const { accessToken, ...user } = await response.json();
-    storage.save("token", accessToken);
-    storage.save("profile", user);
-    alert("Login successful");
-  } catch (error) {
-    console.log(error);
-  }
+  // const result = await response.json();
+  const { accessToken, ...user } = await response.json();
+  storage.save("token", accessToken);
+  storage.save("profile", user);
+  alert("Login successful");
 }
