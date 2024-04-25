@@ -1,4 +1,3 @@
-//This code gets sends login form data to the api
 import { API_SOCIAL } from "../constants.mjs";
 import * as storage from "../../storage/index.mjs";
 
