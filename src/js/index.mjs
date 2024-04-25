@@ -1,17 +1,17 @@
-// import { registerFormListener } from "./handlers/register.mjs";
+import { registerFormListener } from "./handlers/register.mjs";
 import { loginFormListener } from "./handlers/login.mjs";
-import * as post from "./api/posts/index.mjs";
+// import * as post from "./api/posts/index.mjs";
 
-loginFormListener();
+// loginFormListener();
 // registerFormListener();
 
 const path = location.pathname;
 
-// if (path === "/profile/login") {
-//     loginFormListener();
-// } else if (path === "/profile/register") {
-//     registerFormListener();
-// }
+if (path === "/profile/login/") {
+  loginFormListener();
+} else if (path === "/profile/register/") {
+  registerFormListener();
+}
 
 // post.createPost();
 // post.updatePost();
@@ -31,4 +31,3 @@ const path = location.pathname;
 // });
 
 // post.removePost(11940);
-
