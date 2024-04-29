@@ -2,13 +2,13 @@ import { API_SOCIAL } from "../constants.mjs";
 import { authFetch } from "../authFetch.mjs";
 
 const action = "/posts";
+const author = "_author=true";
 
 export async function displayPosts() {
   try {
-    const displayPostsURL = `${API_SOCIAL}${action}`;
+    const displayPostsURL = `${API_SOCIAL}${action}?${author}`;
 
     const response = await authFetch(displayPostsURL);
-
     return await response.json();
   } catch (error) {
     console.log(error);
