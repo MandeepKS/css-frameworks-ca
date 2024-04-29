@@ -4,6 +4,12 @@ export function createPostTemplate(postData) {
   const imageUrl = avatar || "/src/images/default-avatar.png";
   const avatarAlt = `Profile image of ${postData.author.name}`;
 
+  const formattedDate = new Date(postData.created).toLocaleDateString("nb-NO", {
+    day: "numeric",
+    month: "numeric",
+    year: "numeric",
+  });
+
   const post = document.createElement("div");
   post.classList.add("feed-example", "mb-3");
   const postContainer = document.createElement("div");
@@ -24,7 +30,12 @@ export function createPostTemplate(postData) {
   const postImage = document.createElement("img");
   postImage.src = `${imageUrl}`;
   postImage.alt = `${avatarAlt}`;
-  postImage.classList.add("feed-image", "me-1");
+  postImage.classList.add(
+    "feed-image",
+    "me-1",
+    "rounded-circle",
+    "object-fit-cover"
+  );
   postImage.alt = "profile-image";
   const postName = document.createElement("h4");
   postName.classList.add("fw-bold", "h5", "me-2", "mb-0");
@@ -34,7 +45,7 @@ export function createPostTemplate(postData) {
   postUsername.textContent = `@${postData.author.name}`;
   const postDate = document.createElement("small");
   postDate.classList.add("text-muted");
-  postDate.textContent = postData.updated;
+  postDate.textContent = `${formattedDate}`;
   const postText = document.createElement("p");
   postText.classList.add("m-0", "pt-1");
   postText.textContent = postData.body;
