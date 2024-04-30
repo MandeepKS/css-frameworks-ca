@@ -38,8 +38,8 @@ export function createPostTemplate(postData) {
   );
   postImage.alt = "profile-image";
   const postName = document.createElement("h4");
-  postName.classList.add("fw-bold", "h5", "me-2", "mb-0");
-  postName.textContent = postData.name;
+  postName.classList.add("fw-bold", "h5", "mx-1", "mb-0");
+  postName.textContent = "Name";
   const postUsername = document.createElement("p");
   postUsername.classList.add("mb-0", "pe-2", "small");
   postUsername.textContent = `@${postData.author.name}`;
