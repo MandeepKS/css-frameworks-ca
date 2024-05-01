@@ -2,9 +2,11 @@ import { profileInfo } from "../api/authFetch.mjs";
 import { displayProfile } from "../api/profile/display.mjs";
 import { createPostTemplate } from "./displayPosts.mjs";
 import { displayProfilePosts } from "../api/profile/posts.mjs";
+import { load } from "../storage/index.mjs";
 
+const storage = load("profile");
 const url = new URL(location.href);
-const profileName = url.searchParams.get("name");
+const profileName = url.searchParams.get("name") || `${storage.name}`;
 
 const profileInformation = await displayProfilePosts(profileName);
 console.log(profileInformation);
