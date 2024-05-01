@@ -20,7 +20,7 @@ export async function displayPost(id) {
     if (!id) {
       throw new Error("Get requires a post ID");
     }
-    const displayPostURL = `${API_SOCIAL}${action}/${id}`;
+    const displayPostURL = `${API_SOCIAL}${action}/${id}?${author}`;
 
     const response = await authFetch(displayPostURL);
 

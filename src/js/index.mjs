@@ -7,7 +7,15 @@ import * as postMethods from "./api/posts/index.mjs";
 import * as post from "./api/posts/index.mjs";
 import { displayProfile } from "./api/profile/display.mjs";
 
+export async function postTemplate() {
+  const posts = await postMethods.displayPosts();
+  const feedPosts = document.querySelector(".feed-content");
+  templates.renderPostTemplate(posts, feedPosts);
+}
+
 const path = location.pathname;
+const url = new URL(location.href);
+const name = url.searchParams.get("name");
 
 if (path === "/profile/login/") {
   handlers.loginFormListener();
@@ -15,19 +23,17 @@ if (path === "/profile/login/") {
   handlers.registerFormListener();
 } else if (path === "/feed/") {
   handlers.setCreatePostFormListener();
-} else if (path === "/profile/") {
+  postTemplate();
+} else if (path === `/profile/`) {
   handlers.setLogoutListener();
-  templates.renderProfile();
+  templates.renderProfile("fridafever");
+} else if (path === `/profile/?name=${name}`) {
+  templates.renderProfile(name).then(console.log);
+} else if (path === "/feed/post/") {
+  templates.displaySinglePost();
 }
 
-async function testTemplate() {
-  const posts = await postMethods.displayPosts();
-  const feedPosts = document.querySelector(".feed-content");
-  templates.renderPostTemplate(posts, feedPosts);
-}
-
-testTemplate();
-console.log(await displayProfile("fridafever"));
+// console.log(await displayProfile("fridafever"));
 
 // post.createPost();
 // post.updatePost();
