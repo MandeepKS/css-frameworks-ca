@@ -30,6 +30,6 @@ export async function displayProfile(name) {
   }
 }
 
-console.log(await displayProfile("fridafever"));
-const profile = profileInfo();
-console.log(profile.name);
+// console.log(await displayProfile("fridafever"));
+// const profile = profileInfo();
+// console.log(profile.name);

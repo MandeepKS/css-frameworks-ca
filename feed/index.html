@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1664c6557b.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="container-fluid d-flex flex-column justify-content-between min-vh-100" style="
@@ -30,14 +31,37 @@ padding-right: 0px;
         <div class="container d-flex flex-column border-end border-start border-2 border-secondary p-0 bg-white">
             <div class="row mx-0 pt-4">
                 <div class="col-12 px-lg-5 feed-post border-bottom d-flex align-items-center">
-                    <form
+                    <form id="create-post"
                         class="mt-5 col-11 col-lg-12 mb-2 mx-3 mx-lg-0 d-flex flex-wrap justify-content-between align-items-center">
                         <div class="newWoopsie col-12 col-sm-9">
-                            <label for="woopsieInput" class="form-label" hidden="hidden">New Woopsie</label>
-                            <textarea class="form-control p-4" id="woopsieInput"
-                                placeholder="What’s happening?"></textarea>
+
+                            <div class="form-group mb-3">
+                                <label for="title" class="form-label" hidden="hidden">Title</label>
+                                <input type="text" class="form-control" name="title" placeholder="Title" required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="body" class="form-label" hidden="hidden">New Woopsie</label>
+                                <textarea class="form-control p-4" name="body" placeholder="What’s happening?"
+                                    maxlength="70"></textarea>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="media" class="form-label" hidden="hidden">Media</label>
+                                <input type="url" class="form-control" name="media" placeholder="Media url">
+                            </div>
+
+                            <!-- <div class="form-group mb-3">
+                                <label for="tags" class="form-label" hidden="hidden">Tags</label>
+                                <input type="text" class="form-control" name="tags" placeholder="Tags">
+                            </div> -->
+
+                            <!-- <div class="form-group">
+                                <input type="hidden" class="form-control" name="woopsieID">
+                            </div> -->
+
                         </div>
-                        <button type="submit" class="btn btn-primary col-4 col-sm-2 h-50">Share</button>
+                        <button type="submit" class="btn btn-primary col-4 col-sm-2 h-50">Share Post</button>
                     </form>
                 </div>
                 <div class="col-12 bar bar-feed border-bottom d-flex align-items-center px-5">

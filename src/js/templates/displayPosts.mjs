@@ -4,6 +4,11 @@ export function createPostTemplate(postData) {
   const imageUrl = avatar || "/src/images/default-avatar.png";
   const avatarAlt = `Profile image of ${postData.author.name}`;
 
+  //if there is no media, display nothing
+  if (postData.media === null) {
+    postData.media = "";
+  }
+
   const formattedDate = new Date(postData.created).toLocaleDateString("nb-NO", {
     day: "numeric",
     month: "numeric",
@@ -37,18 +42,32 @@ export function createPostTemplate(postData) {
     "object-fit-cover"
   );
   postImage.alt = "profile-image";
-  const postName = document.createElement("h4");
-  postName.classList.add("fw-bold", "h5", "mx-1", "mb-0");
-  postName.textContent = "Name";
+  const postTitle = document.createElement("h4");
+  postTitle.classList.add("fw-bold", "h5", "mx-1", "mb-0");
+  postTitle.textContent = `${postData.title}`;
   const postUsername = document.createElement("p");
   postUsername.classList.add("mb-0", "pe-2", "small");
   postUsername.textContent = `@${postData.author.name}`;
   const postDate = document.createElement("small");
   postDate.classList.add("text-muted");
   postDate.textContent = `${formattedDate}`;
+  const menu = document.createElement("div");
+  menu.classList.add("dropdown", "ms-auto");
+  menu.innerHTML = `<i class="fa-solid fa-ellipsis-vertical"></i>`;
   const postText = document.createElement("p");
   postText.classList.add("m-0", "pt-1");
   postText.textContent = postData.body;
+  const postMedia = document.createElement("img");
+  postMedia.classList.add("w-100", "mt-2");
+  postMedia.src = postData.media;
+  const postTags = document.createElement("div");
+  postTags.classList.add("d-flex", "mt-2");
+  postData.tags.forEach((tag) => {
+    const tagElement = document.createElement("span");
+    tagElement.classList.add("badge", "bg-primary", "text-black", "me-1");
+    tagElement.textContent = tag;
+    postTags.append(tagElement);
+  });
   const interactionContainer = document.createElement("div");
   interactionContainer.classList.add(
     "feed-interact",
@@ -71,15 +90,18 @@ export function createPostTemplate(postData) {
   <path
       d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
 </svg>`;
-  postContent.append(postImage, postName, postUsername, postDate);
-  postContainer.append(postContent, postText);
+  postContent.append(postImage, postTitle, postUsername, postDate, menu);
+  postContainer.append(postContent, postText, postMedia, postTags);
   post.append(postContainer, interactionContainer);
   return post;
 }
 
 export function renderPostTemplate(postDataList, parent) {
   console.log("Received postDataList:", postDataList);
-  parent.append(...postDataList.map(createPostTemplate));
+  const filteredDataList = postDataList.filter(
+    (postData) => postData.body !== null
+  );
+  parent.append(...filteredDataList.map(createPostTemplate));
 }
 /* <div class="feed-example mb-3">
                         <div class="publishedWoopsie w-100 border rounded p-3">

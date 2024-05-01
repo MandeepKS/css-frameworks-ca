@@ -1,16 +1,23 @@
-import { registerFormListener } from "./handlers/register.mjs";
-import { loginFormListener } from "./handlers/login.mjs";
-
-import * as templates from "./templates/displayPosts.mjs";
+// import { registerFormListener } from "./handlers/register.mjs";
+// import { loginFormListener } from "./handlers/login.mjs";
+import * as handlers from "./handlers/index.mjs";
+// import * as templates from "./templates/displayPosts.mjs";
+import * as templates from "./templates/index.mjs";
 import * as postMethods from "./api/posts/index.mjs";
-// import * as post from "./api/posts/index.mjs";
+import * as post from "./api/posts/index.mjs";
+import { displayProfile } from "./api/profile/display.mjs";
 
 const path = location.pathname;
 
 if (path === "/profile/login/") {
-  loginFormListener();
+  handlers.loginFormListener();
 } else if (path === "/profile/register/") {
-  registerFormListener();
+  handlers.registerFormListener();
+} else if (path === "/feed/") {
+  handlers.setCreatePostFormListener();
+} else if (path === "/profile/") {
+  handlers.setLogoutListener();
+  templates.renderProfile();
 }
 
 async function testTemplate() {
@@ -20,6 +27,8 @@ async function testTemplate() {
 }
 
 testTemplate();
+console.log(await displayProfile("fridafever"));
+
 // post.createPost();
 // post.updatePost();
 // post.removePost();
@@ -27,8 +36,8 @@ testTemplate();
 // post.displayPosts().then(console.log);
 
 // post.createPost({
-//   title: "My first post",
-//   body: "This is my first post",
+//   title: "this is a test",
+//   body: "please ignore",
 // });
 
 // post.updatePost({
@@ -37,4 +46,4 @@ testTemplate();
 //   body: "This is my first post UPDATED twice",
 // });
 
-// post.removePost(11940);
+// post.removePost(12005);
