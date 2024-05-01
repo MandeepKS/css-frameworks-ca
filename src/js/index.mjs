@@ -1,9 +1,9 @@
 import { registerFormListener } from "./handlers/register.mjs";
 import { loginFormListener } from "./handlers/login.mjs";
-// import * as post from "./api/posts/index.mjs";
 
-// loginFormListener();
-// registerFormListener();
+import * as templates from "./templates/displayPosts.mjs";
+import * as postMethods from "./api/posts/index.mjs";
+// import * as post from "./api/posts/index.mjs";
 
 const path = location.pathname;
 
@@ -13,6 +13,13 @@ if (path === "/profile/login/") {
   registerFormListener();
 }
 
+async function testTemplate() {
+  const posts = await postMethods.displayPosts();
+  const feedPosts = document.querySelector(".feed-content");
+  templates.renderPostTemplate(posts, feedPosts);
+}
+
+testTemplate();
 // post.createPost();
 // post.updatePost();
 // post.removePost();
