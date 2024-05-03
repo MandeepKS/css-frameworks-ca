@@ -4,8 +4,14 @@ import * as handlers from "./handlers/index.mjs";
 // import * as templates from "./templates/displayPosts.mjs";
 import * as templates from "./templates/index.mjs";
 import * as postMethods from "./api/posts/index.mjs";
+import * as profile from "./api/profile/index.mjs";
 import * as post from "./api/posts/index.mjs";
 import { displayProfile } from "./api/profile/display.mjs";
+import { load } from "./storage/index.mjs";
+
+const loggedIn = load("profile");
+const user = loggedIn.name;
+console.log(user);
 
 export async function postTemplate() {
   const posts = await postMethods.displayPosts();
@@ -31,7 +37,8 @@ switch (path) {
     break;
   case "/profile/":
     handlers.setLogoutListener();
-    templates.renderProfile("fridafever");
+    templates.renderProfile(user);
+    handlers.setUpdateProfileFormListener();
     break;
   case `/profile/?name=${name}`:
     templates.renderProfile(name).then(console.log);

@@ -11,12 +11,15 @@ const profileName = url.searchParams.get("name") || `${storage.name}`;
 const profileInformation = await displayProfilePosts(profileName);
 console.log(profileInformation);
 
+const profileHeader = document.querySelector(".profile-header-img");
+
 export async function renderProfile(profile) {
   //   const profile = profileInfo();
   const profileInfo = await displayProfile(profileName);
   console.log(profileInfo);
   const profilePosts = profileInfo.posts;
   console.log(profilePosts);
+  profileHeader.src = profileInfo.banner || "/src/images/header-bg.png";
   const avatarURL = profileInfo.avatar || "/src/images/default-avatar.png";
   const followInfo = document.querySelector(".name-stats");
   const name = document.createElement("div");
@@ -40,6 +43,8 @@ export async function renderProfile(profile) {
   followStats.append(following, followers);
   followInfo.append(name, followStats);
 
+  const bio = storage.bio || "<i>No bio added by user yet.</i>";
+
   const profileContainer = document.querySelector(".profile-info");
   profileContainer.innerHTML += `
                             <div class="profile-img d-flex justify-content-center  start-0 end-0">
@@ -47,11 +52,14 @@ export async function renderProfile(profile) {
                             </div>
                             <p class="fw-bold fst-italic text-center pt-2">@${profileInfo.name}</p>
                             <div class="p-3 bio text-center">
-
+                            <p>${bio}</p>
                             <p>${profileInfo._count.posts} posts</p>
                         </div>
                         <div class="follow-button d-flex justify-content-center mb-3">
                             <input class="col-4 col-sm-3 col-lg-4 btn btn-primary" type="submit" value="Follow">
+                        </div>
+                        <div class="edit-button d-flex justify-content-center mb-3">
+                            <input class="col-6 col-sm-3 col-lg-6 btn btn-outline-primary" type="button" hidden="hidden" value="Edit Profile">
                         </div>
   `;
 
@@ -59,4 +67,30 @@ export async function renderProfile(profile) {
   profileInformation.forEach((post) => {
     feedPosts.appendChild(createPostTemplate(post));
   });
+
+  const followButton = document.querySelector(".follow-button");
+  const editButton = document.querySelector(".edit-button");
+
+  if (profileInfo.name === storage.name) {
+    editButton.children[0].removeAttribute("hidden");
+    followButton.children[0].remove();
+    editButton.addEventListener("click", () => {
+      editButton.children[0].setAttribute("hidden", "hidden");
+      const profileContainer = document.querySelector(".profile-info");
+      profileContainer.innerHTML += `<div class="profile-edit d-flex justify-content-center">
+      <form id="edit-profile" class="d-flex flex-column align-items-center col-8">
+
+          <label for="avatar" class="form-label">Avatar:</label>
+          <input type="url" id="avatar" name="avatar" class="form-control mb-3"
+              placeholder="Paste Image URL here">
+          <label for="banner" class="form-label">Banner:</label>
+          <input type="url" id="banner" name="banner" class="form-control mb-3"
+              placeholder="Paste Image URL here">
+          <button type="submit" class="update-profile-btn btn btn-primary mb-4">Update profile</button>
+      </form>
+  </div>`;
+    });
+  }
 }
+//<label for="bio" class="form-label">Bio:</label>
+//<input type="text" id="bio" name="bio" class="form-control mb-3">
