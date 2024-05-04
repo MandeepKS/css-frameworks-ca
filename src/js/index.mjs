@@ -11,7 +11,7 @@ import { load } from "./storage/index.mjs";
 
 const loggedIn = load("profile");
 const user = loggedIn.name;
-console.log(user);
+// console.log(user);
 
 export async function postTemplate() {
   const posts = await postMethods.displayPosts();
@@ -39,6 +39,7 @@ switch (path) {
     handlers.setLogoutListener();
     templates.renderProfile(user);
     handlers.setUpdateProfileFormListener();
+    // handlers.setPostMenuListener();
     break;
   case `/profile/?name=${name}`:
     templates.renderProfile(name).then(console.log);

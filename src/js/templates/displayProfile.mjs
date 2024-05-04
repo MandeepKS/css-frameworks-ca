@@ -1,24 +1,31 @@
 import { profileInfo } from "../api/authFetch.mjs";
 import { displayProfile } from "../api/profile/display.mjs";
 import { createPostTemplate } from "./displayPosts.mjs";
-import { displayProfilePosts } from "../api/profile/posts.mjs";
+// import { displayProfilePosts } from "../api/profile/posts.mjs";
+import { displayPosts } from "../api/posts/display.mjs";
 import { load } from "../storage/index.mjs";
+import { postTemplate } from "../index.mjs";
 
 const storage = load("profile");
 const url = new URL(location.href);
 const profileName = url.searchParams.get("name") || `${storage.name}`;
-
-const profileInformation = await displayProfilePosts(profileName);
-console.log(profileInformation);
+// const profileInformation = await displayProfilePosts(profileName);
+const posts = await displayPosts();
+// posts.forEach((post) => {
+//   if (post.author.name === profileName) {
+//     console.log("All posts", post);
+//   }
+// });
+// console.log("Posts by profile", profileInformation);
 
 const profileHeader = document.querySelector(".profile-header-img");
 
 export async function renderProfile(profile) {
   //   const profile = profileInfo();
   const profileInfo = await displayProfile(profileName);
-  console.log(profileInfo);
-  const profilePosts = profileInfo.posts;
-  console.log(profilePosts);
+  // console.log(profileInfo);
+  // const profilePosts = profileInfo.posts;
+  // console.log(profilePosts);
   profileHeader.src = profileInfo.banner || "/src/images/header-bg.png";
   const avatarURL = profileInfo.avatar || "/src/images/default-avatar.png";
   const followInfo = document.querySelector(".name-stats");
@@ -63,34 +70,33 @@ export async function renderProfile(profile) {
                         </div>
   `;
 
-  const feedPosts = document.querySelector(".feed-content");
-  profileInformation.forEach((post) => {
-    feedPosts.appendChild(createPostTemplate(post));
-  });
-
   const followButton = document.querySelector(".follow-button");
   const editButton = document.querySelector(".edit-button");
+  const editContainer = document.querySelector(".profile-edit");
 
   if (profileInfo.name === storage.name) {
     editButton.children[0].removeAttribute("hidden");
     followButton.children[0].remove();
-    editButton.addEventListener("click", () => {
-      editButton.children[0].setAttribute("hidden", "hidden");
-      const profileContainer = document.querySelector(".profile-info");
-      profileContainer.innerHTML += `<div class="profile-edit d-flex justify-content-center">
-      <form id="edit-profile" class="d-flex flex-column align-items-center col-8">
-
-          <label for="avatar" class="form-label">Avatar:</label>
-          <input type="url" id="avatar" name="avatar" class="form-control mb-3"
-              placeholder="Paste Image URL here">
-          <label for="banner" class="form-label">Banner:</label>
-          <input type="url" id="banner" name="banner" class="form-control mb-3"
-              placeholder="Paste Image URL here">
-          <button type="submit" class="update-profile-btn btn btn-primary mb-4">Update profile</button>
-      </form>
-  </div>`;
-    });
   }
+
+  editButton.addEventListener("click", () => {
+    editButton.children[0].setAttribute("hidden", "hidden");
+    // const profileContainer = document.querySelector(".profile-info");
+    editContainer.style.display = "block";
+  });
+
+  // const feedPosts = document.querySelector(".feed-content");
+  // posts.forEach((post) => {
+  //   if (post.author.name === profileName) {
+  //     feedPosts.appendChild(createPostTemplate(post));
+  //   }
+  // });
+
+  const feedPosts = document.querySelector(".feed-content");
+  const profilePosts = posts.filter(
+    (post) => post.author.name === profileName && post.body !== null
+  );
+  feedPosts.append(...profilePosts.map(createPostTemplate));
 }
 //<label for="bio" class="form-label">Bio:</label>
 //<input type="text" id="bio" name="bio" class="form-control mb-3">

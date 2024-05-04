@@ -55,6 +55,7 @@ export async function setUpdateProfileFormListener() {
 
       profile.name = name;
       console.log("Profile data:", profile); // Check profile data before sending the request
+      window.location.reload();
 
       try {
         updateProfile(profile);
