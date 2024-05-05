@@ -1,25 +1,80 @@
-import { registerFormListener } from "./handlers/register.mjs";
-import { loginFormListener } from "./handlers/login.mjs";
-
-import * as templates from "./templates/displayPosts.mjs";
+// import { registerFormListener } from "./handlers/register.mjs";
+// import { loginFormListener } from "./handlers/login.mjs";
+import * as handlers from "./handlers/index.mjs";
+// import * as templates from "./templates/displayPosts.mjs";
+import * as templates from "./templates/index.mjs";
 import * as postMethods from "./api/posts/index.mjs";
-// import * as post from "./api/posts/index.mjs";
+import * as profile from "./api/profile/index.mjs";
+import * as post from "./api/posts/index.mjs";
+import { displayProfile } from "./api/profile/display.mjs";
+import { load } from "./storage/index.mjs";
+
+const loggedIn = load("profile");
+
+// console.log(user);
+
+// export async function postTemplate() {
+//   const posts = await postMethods.displayPosts();
+//   const feedPosts = document.querySelector(".feed-content");
+//   feedPosts.innerHTML = "";
+//   templates.renderPostTemplate(posts, feedPosts);
+// }
 
 const path = location.pathname;
+const url = new URL(location.href);
+const name = url.searchParams.get("name");
 
-if (path === "/profile/login/") {
-  loginFormListener();
-} else if (path === "/profile/register/") {
-  registerFormListener();
+switch (path) {
+  case "/profile/login/":
+    handlers.loginFormListener();
+    break;
+  case "/profile/register/":
+    handlers.registerFormListener();
+    break;
+  case "/feed/":
+    handlers.setCreatePostFormListener();
+    handlers.postTemplate();
+    handlers.setPostMenuDeleteBtnListener();
+    handlers.setCreateCommentFormListener();
+    break;
+  case "/profile/":
+    const user = loggedIn.name;
+    handlers.setLogoutListener();
+    templates.renderProfile(user);
+    handlers.setUpdateProfileFormListener();
+    // handlers.setPostMenuListener();
+    break;
+  case `/profile/?name=${name}`:
+    templates.renderProfile(name);
+    break;
+  case "/feed/post/":
+    templates.displaySinglePost();
+    break;
+  case "/feed/post/edit/":
+    handlers.setUpdatePostFormListener();
+    break;
+  default:
+    // Handle default case if none of the paths match
+    break;
 }
+// if (path === "/profile/login/") {
+//   handlers.loginFormListener();
+// } else if (path === "/profile/register/") {
+//   handlers.registerFormListener();
+// } else if (path === "/feed/") {
+//   handlers.setCreatePostFormListener();
+//   postTemplate();
+// } else if (path === `/profile/`) {
+//   handlers.setLogoutListener();
+//   templates.renderProfile("fridafever");
+// } else if (path === `/profile/?name=${name}`) {
+//   templates.renderProfile(name).then(console.log);
+// } else if (path === "/feed/post/") {
+//   templates.displaySinglePost();
+// }
 
-async function testTemplate() {
-  const posts = await postMethods.displayPosts();
-  const feedPosts = document.querySelector(".feed-content");
-  templates.renderPostTemplate(posts, feedPosts);
-}
+// console.log(await displayProfile("fridafever"));
 
-testTemplate();
 // post.createPost();
 // post.updatePost();
 // post.removePost();
@@ -27,8 +82,8 @@ testTemplate();
 // post.displayPosts().then(console.log);
 
 // post.createPost({
-//   title: "My first post",
-//   body: "This is my first post",
+//   title: "this is a test",
+//   body: "please ignore",
 // });
 
 // post.updatePost({
@@ -37,4 +92,4 @@ testTemplate();
 //   body: "This is my first post UPDATED twice",
 // });
 
-// post.removePost(11940);
+// post.removePost(12030);

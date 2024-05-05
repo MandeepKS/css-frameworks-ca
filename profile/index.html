@@ -7,19 +7,23 @@
     <title>Profile</title>
     <link rel="icon" type="image" href="/src/images/logo-W-bubble.png">
     <link rel="stylesheet" href="/dist/css/index.css">
-    <script src="/src/js/api/profile/display.mjs" type="module"></script>
+    <!-- <script src="/src/js/api/profile/display.mjs" type="module"></script> -->
+    <script src="/src/js/index.mjs" type="module"></script>
+    <script src="/src/js/handlers/openPostMenu.mjs" type="module"></script>
+    <!-- <script src="/src/js/templates/displayProfile.mjs" type="module"></script> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1664c6557b.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="container-fluid d-flex flex-column justify-content-between min-vh-100" style="padding-left: 0px;
     padding-right: 0px;">
     <header class="header d-flex col-12">
-        <a href="/feed/index.html"><img src="/src/images/logo-W-bubble.png"
-                class="col-12 position-absolute header-logo z-3" alt="W logo"></a>
+        <a href="/feed/"><img src="/src/images/logo-W-bubble.png" class="col-12 position-absolute header-logo z-3"
+                alt="W logo"></a>
         <div class="header-inner border-bottom border-5 border-white w-100">
         </div>
     </header>
@@ -33,33 +37,34 @@
                 <div class="col-12 bar bar-profile w-100 px-3 px-sm-5 ">
                     <div
                         class="name-stats h-100 col-12 col-lg-9 d-flex flex-wrap align-items-center justify-content-between">
-                        <div class="profile-name me-2">
+                        <!-- <div class="profile-name me-2">
                             <h1 class="h3 fw-bold m-0">Frida</h1>
                         </div>
                         <div class="follow-stats gap-3 d-flex flex-wrap fst-italic">
                             <p class="m-0">702 following</p>
                             <p class="m-0">1,699 followers</p>
-                        </div>
+                        </div> -->
+
                     </div>
                 </div>
             </div>
             <div class="row flex-column-reverse flex-lg-row flex-grow-1 w-100 mx-0 feed">
-                <div class="col-12 col-lg-9 feed-content px-3 px-sm-5 pt-4">
+                <div class="col-12 col-lg-9 feed-content px-3 px-sm-5 pt-4 flex-grow-1">
                     <div class="p-feed-choices d-flex flex-wrap justify-content-between p-2">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="sortWoopsies" id="radioWoopsies" checked>
                             <label class="form-check-label" for="radioWoopsies">
-                                Woopsies
+                                All Woopsies
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="sortWoopsies" id="radioReplies">
                             <label class="form-check-label" for="radioReplies">
-                                Replies
+                                With Media
                             </label>
                         </div>
                     </div>
-                    <div class="feed-example mb-3">
+                    <!-- <div class="feed-example mb-3">
                         <div class="publishedWoopsie w-100 border rounded p-3">
                             <div class="name-date d-flex flex-wrap align-items-center">
                                 <img src="/src/images/profile-img-round.png" class="feed-image me-1"
@@ -291,21 +296,37 @@
                                     d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
                             </svg>
                         </div>
-                    </div>
+                    </div> -->
 
 
                 </div>
                 <div class="col-12 col-lg-3 profile-section pt-4">
-                    <div class="profile-img d-flex justify-content-center start-0 end-0">
-                        <img src="/src/images/profile-img-round.png" class="img-fluid mt-lg-n7"
-                            alt="Profile user image">
+                    <div class="profile-info">
+                        <!--JS rendered content-->
+                        <!-- <div class="profile-img d-flex justify-content-center start-0 end-0">
+                            <img src="/src/images/profile-img-round.png" class="img-fluid mt-lg-n7"
+                                alt="Profile user image">
+                        </div>
+                        <p class="fw-bold fst-italic text-center pt-2">@fridafever</p>
+                        <div class="p-3 bio text-center">
+                            <p>Hi, I’m a 34yo woman from Norway living my best life</p>
+                        </div>
+                        <div class="follow-button d-flex justify-content-center mb-3">
+                            <input class="col-4 col-sm-3 col-lg-4 btn btn-primary" type="submit" value="Follow">
+                        </div> -->
                     </div>
-                    <p class="fw-bold fst-italic text-center pt-2">@fridafever</p>
-                    <div class="p-3 bio text-center">
-                        <p>Hi, I’m a 34yo woman from Norway living my best life</p>
-                    </div>
-                    <div class="follow-button d-flex justify-content-center mb-3">
-                        <input class="col-4 col-sm-3 col-lg-4 btn btn-primary" type="submit" value="Follow">
+                    <div class="profile-edit" style="display: none;">
+                        <form id="edit-profile" class="d-flex flex-column align-items-center col-12">
+
+                            <label for="avatar" class="form-label">Avatar:</label>
+                            <input type="url" id="avatar" name="avatar" class="form-control mb-3"
+                                placeholder="Paste Image URL here">
+                            <label for="banner" class="form-label">Banner:</label>
+                            <input type="url" id="banner" name="banner" class="form-control mb-3"
+                                placeholder="Paste Image URL here">
+                            <button type="submit" class="update-profile-btn btn btn-primary mb-4">Update
+                                profile</button>
+                        </form>
                     </div>
                     <form class="d-flex mx-3 col-11">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -322,9 +343,11 @@
                             <li class="nav-item"><a href="#" class="nav-link d-flex align-items-center gap-1"><i
                                         class="bi bi-bell"></i>NOTIFICATIONS</a>
                             </li>
-                            <li class="nav-item"><a href="/index.html"
-                                    class="nav-link d-flex align-items-center gap-1"><i
-                                        class="bi bi-box-arrow-left"></i> LOG OUT</a></li>
+                            <li class="nav-item">
+                                <p class="nav-link d-flex align-items-center gap-1 logout"><i
+                                        class="bi bi-box-arrow-left"></i>
+                                    LOG OUT</p>
+                            </li>
                         </ul>
                     </div>
                 </div>

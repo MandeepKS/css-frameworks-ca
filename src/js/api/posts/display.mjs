@@ -3,10 +3,12 @@ import { authFetch } from "../authFetch.mjs";
 
 const action = "/posts";
 const author = "_author=true";
+const comments = "&_comments=true";
+const reactions = "&_reactions=true";
 
 export async function displayPosts() {
   try {
-    const displayPostsURL = `${API_SOCIAL}${action}?${author}`;
+    const displayPostsURL = `${API_SOCIAL}${action}?${author}${comments}${reactions}`;
 
     const response = await authFetch(displayPostsURL);
     return await response.json();
@@ -20,7 +22,7 @@ export async function displayPost(id) {
     if (!id) {
       throw new Error("Get requires a post ID");
     }
-    const displayPostURL = `${API_SOCIAL}${action}/${id}`;
+    const displayPostURL = `${API_SOCIAL}${action}/${id}?${author}${comments}${reactions}`;
 
     const response = await authFetch(displayPostURL);
 

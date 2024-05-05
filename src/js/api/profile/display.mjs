@@ -3,6 +3,7 @@ import { authFetch } from "../authFetch.mjs";
 import { profileInfo } from "../authFetch.mjs";
 
 const action = "/profiles";
+const posts = "?_posts=true";
 
 export async function displayProfiles() {
   try {
@@ -20,7 +21,7 @@ export async function displayProfile(name) {
     if (!name) {
       throw new Error("Get requires a profile name");
     }
-    const displayProfileURL = `${API_SOCIAL}${action}/${name}`;
+    const displayProfileURL = `${API_SOCIAL}${action}/${name}${posts}`;
 
     const response = await authFetch(displayProfileURL);
 
@@ -30,6 +31,6 @@ export async function displayProfile(name) {
   }
 }
 
-console.log(await displayProfile("fridafever"));
-const profile = profileInfo();
-console.log(profile.name);
+// console.log(await displayProfile("fridafever"));
+// const profile = profileInfo();
+// console.log(profile.name);

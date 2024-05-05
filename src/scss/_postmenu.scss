@@ -1,0 +1,13 @@
+.postmenu-container {
+  padding: 0 10px;
+  height: auto;
+  width: 100px;
+  .postmenu-item {
+    align-items: center;
+    color: #666;
+    cursor: pointer;
+    &:hover {
+      color: pink;
+    }
+  }
+}
