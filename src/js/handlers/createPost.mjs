@@ -1,5 +1,6 @@
 import { createPost } from "../api/posts/create.mjs";
-import { postTemplate } from "../index.mjs";
+import { postTemplate } from "../handlers/postTemplate.mjs";
+// import { postTemplate } from "../index.mjs";
 // export function setCreatePostFormListener() {
 //   const form = document.querySelector("#create-post");
 

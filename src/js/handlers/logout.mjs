@@ -1,5 +1,6 @@
 export function setLogoutListener() {
   const logout = document.querySelector(".logout");
+  logout.style.cursor = "pointer";
 
   if (logout) {
     logout.addEventListener("click", () => {

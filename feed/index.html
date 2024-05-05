@@ -70,7 +70,22 @@ padding-right: 0px;
             </div>
             <div class="row mx-0 feed flex-column-reverse flex-grow-1 flex-lg-row">
 
-                <div class="col-12 col-lg-9 feed-content px-3 px-sm-5 pt-4">
+                <div class="col-12 col-lg-9 feed-content px-3 px-sm-5 pt-4 flex-grow-1">
+
+                    <div class="p-feed-choices d-flex flex-wrap justify-content-between p-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sortWoopsies" id="radioWoopsies" checked>
+                            <label class="form-check-label" for="radioWoopsies">
+                                All Woopsies
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="sortWoopsies" id="radioReplies">
+                            <label class="form-check-label" for="radioReplies">
+                                With Media
+                            </label>
+                        </div>
+                    </div>
 
                     <!-- <div class="feed-example mb-3">
                         <div class="publishedWoopsie w-100 border rounded p-3">

@@ -10,15 +10,15 @@ import { displayProfile } from "./api/profile/display.mjs";
 import { load } from "./storage/index.mjs";
 
 const loggedIn = load("profile");
-const user = loggedIn.name;
+
 // console.log(user);
 
-export async function postTemplate() {
-  const posts = await postMethods.displayPosts();
-  const feedPosts = document.querySelector(".feed-content");
-  feedPosts.innerHTML = "";
-  templates.renderPostTemplate(posts, feedPosts);
-}
+// export async function postTemplate() {
+//   const posts = await postMethods.displayPosts();
+//   const feedPosts = document.querySelector(".feed-content");
+//   feedPosts.innerHTML = "";
+//   templates.renderPostTemplate(posts, feedPosts);
+// }
 
 const path = location.pathname;
 const url = new URL(location.href);
@@ -33,16 +33,19 @@ switch (path) {
     break;
   case "/feed/":
     handlers.setCreatePostFormListener();
-    postTemplate();
+    handlers.postTemplate();
+    handlers.setPostMenuDeleteBtnListener();
+    handlers.setCreateCommentFormListener();
     break;
   case "/profile/":
+    const user = loggedIn.name;
     handlers.setLogoutListener();
     templates.renderProfile(user);
     handlers.setUpdateProfileFormListener();
     // handlers.setPostMenuListener();
     break;
   case `/profile/?name=${name}`:
-    templates.renderProfile(name).then(console.log);
+    templates.renderProfile(name);
     break;
   case "/feed/post/":
     templates.displaySinglePost();

@@ -5,3 +5,6 @@ export * from "./updatePost.mjs";
 export * from "./logout.mjs";
 export * from "./updateProfile.mjs";
 export * from "./openPostMenu.mjs";
+export * from "./postMenuDeleteBtn.mjs";
+export * from "./postTemplate.mjs";
+export * from "./createComment.mjs";

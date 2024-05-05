@@ -38,7 +38,6 @@ export async function setUpdateProfileFormListener() {
     button.disabled = true;
 
     const profile = await displayProfile(name);
-    console.log(profile); // Check if profile data is fetched correctly
 
     // form.bio.value = bio;
     form.avatar.value = profile.avatar;
@@ -48,13 +47,11 @@ export async function setUpdateProfileFormListener() {
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      console.log("Form submitted"); // Check if form submission event is triggered
 
       const formData = new FormData(form);
       const profile = Object.fromEntries(formData.entries());
 
       profile.name = name;
-      console.log("Profile data:", profile); // Check profile data before sending the request
       window.location.reload();
 
       try {

@@ -4,13 +4,7 @@ import { createPostTemplate } from "./displayPosts.mjs";
 // import { displayProfilePosts } from "../api/profile/posts.mjs";
 import { displayPosts } from "../api/posts/display.mjs";
 import { load } from "../storage/index.mjs";
-import { postTemplate } from "../index.mjs";
 
-const storage = load("profile");
-const url = new URL(location.href);
-const profileName = url.searchParams.get("name") || `${storage.name}`;
-// const profileInformation = await displayProfilePosts(profileName);
-const posts = await displayPosts();
 // posts.forEach((post) => {
 //   if (post.author.name === profileName) {
 //     console.log("All posts", post);
@@ -21,11 +15,16 @@ const posts = await displayPosts();
 const profileHeader = document.querySelector(".profile-header-img");
 
 export async function renderProfile(profile) {
+  const storage = load("profile");
+  const url = new URL(location.href);
+  const profileName = url.searchParams.get("name") || `${storage.name}`;
+  // const profileInformation = await displayProfilePosts(profileName);
+  const posts = await displayPosts();
   //   const profile = profileInfo();
   const profileInfo = await displayProfile(profileName);
   // console.log(profileInfo);
-  // const profilePosts = profileInfo.posts;
-  // console.log(profilePosts);
+  const allProfilePosts = profileInfo.posts;
+  console.log(allProfilePosts);
   profileHeader.src = profileInfo.banner || "/src/images/header-bg.png";
   const avatarURL = profileInfo.avatar || "/src/images/default-avatar.png";
   const followInfo = document.querySelector(".name-stats");
@@ -96,6 +95,26 @@ export async function renderProfile(profile) {
   const profilePosts = posts.filter(
     (post) => post.author.name === profileName && post.body !== null
   );
+  if (profilePosts.length === 0) {
+    const noPostsContainer = document.createElement("div");
+    noPostsContainer.classList.add(
+      "text-center",
+      "my-5",
+      "d-flex",
+      "flex-column"
+    );
+    const noPosts = document.createElement("p");
+    noPosts.classList.add("text-center", "text-muted");
+    noPosts.textContent = "No posts to display";
+    const addFirstPost = document.createElement("a");
+    addFirstPost.classList.add("text-center", "text-primary");
+    addFirstPost.href = "/feed/";
+    addFirstPost.textContent = "Add your first post here";
+
+    noPostsContainer.append(noPosts, addFirstPost);
+
+    feedPosts.appendChild(noPostsContainer);
+  }
   feedPosts.append(...profilePosts.map(createPostTemplate));
 }
 //<label for="bio" class="form-label">Bio:</label>

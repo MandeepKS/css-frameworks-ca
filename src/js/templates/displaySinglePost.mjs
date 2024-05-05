@@ -8,10 +8,21 @@ const postID = urlParams.get("id");
 
 // render a single post by ID
 export async function displaySinglePost() {
-  const singlePost = await displayPost(postID);
   const container = document.querySelector(".feed-content");
-  container.appendChild(createPostTemplate(singlePost));
-  console.log(singlePost);
+  try {
+    const singlePost = await displayPost(postID);
+    //IF POST NOT FOUND
+    // if (singlePost === undefined) {
+    //   container.innerHTML = "<h1>Post not found</h1>";
+    //   return;
+    // }
+    container.appendChild(createPostTemplate(singlePost));
+    console.log(singlePost);
+  } catch (error) {
+    console.log(error);
+    container.innerHTML = `<h1>Sorry, post by the ID of ${postID} not found</h1>
+    <p><a href='/feed/'>Click here to go back to the feed</a></p>`;
+  }
 }
 
 // displaySinglePost();
