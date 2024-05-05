@@ -50,6 +50,9 @@ switch (path) {
   case "/feed/post/":
     templates.displaySinglePost();
     break;
+  case "/feed/post/edit/":
+    handlers.setUpdatePostFormListener();
+    break;
   default:
     // Handle default case if none of the paths match
     break;

@@ -153,6 +153,7 @@ export function createPostTemplate(postData) {
           const postId = editBtn.dataset.id;
           console.log(postId);
           console.log("clicked edit");
+          window.location.href = `/feed/post/edit/?id=${postId}`;
         });
       }
     });
