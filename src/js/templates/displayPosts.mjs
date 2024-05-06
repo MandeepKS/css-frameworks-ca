@@ -6,6 +6,7 @@ import { saveReactionToPost } from "../api/posts/reactToPost.mjs";
 // import { commentToPost, getComments } from "../api/posts/index.mjs";
 import { setCreateCommentFormListener } from "../handlers/index.mjs";
 import { displayComments } from "./displayComments.mjs";
+import { displayPostByTag } from "./displayPostByTag.mjs";
 
 export function createPostTemplate(postData) {
   const { name } = load("profile");
@@ -21,9 +22,22 @@ export function createPostTemplate(postData) {
   // Edit how the date is displayed
   const formattedDate = new Date(postData.created).toLocaleDateString("nb-NO", {
     day: "numeric",
-    month: "numeric",
+    month: "long",
     year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
   });
+
+  const formattedUpdatedDate = new Date(postData.updated).toLocaleDateString(
+    "nb-NO",
+    {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    }
+  );
 
   const post = document.createElement("div");
   post.classList.add("feed-example", "mb-4");
@@ -48,7 +62,8 @@ export function createPostTemplate(postData) {
     "name-date",
     "d-flex",
     "flex-wrap",
-    "align-items-center"
+    "align-items-center",
+    "mb-2"
   );
 
   const postProfileImage = document.createElement("img");
@@ -63,7 +78,7 @@ export function createPostTemplate(postData) {
   postProfileImage.alt = `Profile image of ${postData.author.name}`;
 
   const postTitle = document.createElement("h4");
-  postTitle.classList.add("fw-bold", "h5", "mx-1", "mb-0");
+  postTitle.classList.add("fw-bold", "h5", "mb-0");
   postTitle.textContent = `${postData.title}`;
 
   const usernameLink = document.createElement("a");
@@ -74,8 +89,12 @@ export function createPostTemplate(postData) {
   postUsername.textContent = `@${postData.author.name}`;
 
   const postDate = document.createElement("small");
-  postDate.classList.add("text-muted");
+  postDate.classList.add("text-muted", "post-date");
   postDate.textContent = `${formattedDate}`;
+  //on mouseover, if post is updated, updated date displays in a tooltip
+  if (postData.updated !== postData.created) {
+    postDate.title = `Updated: ${formattedUpdatedDate}`;
+  }
 
   //Create menu for delete/edit post
   const menu = document.createElement("div");
@@ -94,6 +113,7 @@ export function createPostTemplate(postData) {
       "pt-2"
     );
     menu.innerHTML = `<i class="fa-solid fa-ellipsis-vertical"></i>`;
+    menu.style.cursor = "pointer";
     const menuContent = document.createElement("div");
     menuContent.classList.add(
       "postmenu-container",
@@ -188,8 +208,14 @@ export function createPostTemplate(postData) {
       "me-1",
       "mb-1"
     );
+    tagElement.style.cursor = "pointer";
     tagElement.textContent = tag;
     postTags.append(tagElement);
+
+    //select the tag clicked
+    tagElement.addEventListener("click", () => {
+      displayPostByTag(tag);
+    });
   });
 
   //create the interaction container of the post
@@ -275,7 +301,7 @@ export function createPostTemplate(postData) {
   const commentsList = document.createElement("ul");
   commentsList.classList.add("list-unstyled", "comments-list");
   if (postData.comments.length > 0) {
-    console.log("Post Comments: ", postData.title, postData.comments);
+    // console.log("Post Comments: ", postData.title, postData.comments);
     postData.comments.forEach((comment) => {
       const commentItem = document.createElement("li");
       commentItem.classList.add(
@@ -392,8 +418,8 @@ export function createPostTemplate(postData) {
   interactionContainer.append(reactionIcons);
 
   usernameLink.appendChild(postUsername);
-  postContent.append(postProfileImage, postTitle, usernameLink, postDate, menu);
-  postBody.append(postText, postMedia);
+  postContent.append(postProfileImage, usernameLink, postDate, menu);
+  postBody.append(postTitle, postText, postMedia);
   postIDlink.appendChild(postBody);
   postContainer.append(postContent, postIDlink, postTags);
   post.append(postContainer, interactionContainer);

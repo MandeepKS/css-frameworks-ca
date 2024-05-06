@@ -23,8 +23,8 @@ export async function renderProfile(profile) {
   //   const profile = profileInfo();
   const profileInfo = await displayProfile(profileName);
   // console.log(profileInfo);
-  const allProfilePosts = profileInfo.posts;
-  console.log(allProfilePosts);
+  // const allProfilePosts = profileInfo.posts;
+  // console.log(allProfilePosts);
   profileHeader.src = profileInfo.banner || "/src/images/header-bg.png";
   const avatarURL = profileInfo.avatar || "/src/images/default-avatar.png";
   const followInfo = document.querySelector(".name-stats");

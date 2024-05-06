@@ -31,3 +31,15 @@ export async function displayPost(id) {
     console.log(error);
   }
 }
+
+export async function displayPostsByTag(tag) {
+  try {
+    const displayPostByTagURL = `${API_SOCIAL}${action}?tags=${tag}&${author}${comments}${reactions}`;
+
+    const response = await authFetch(displayPostByTagURL);
+
+    return await response.json();
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -8,6 +8,9 @@ import * as profile from "./api/profile/index.mjs";
 import * as post from "./api/posts/index.mjs";
 import { displayProfile } from "./api/profile/display.mjs";
 import { load } from "./storage/index.mjs";
+import { displayUsername } from "./templates/displayUsername.mjs";
+displayUsername();
+handlers.setLogoutListener();
 
 const loggedIn = load("profile");
 
@@ -23,6 +26,7 @@ const loggedIn = load("profile");
 const path = location.pathname;
 const url = new URL(location.href);
 const name = url.searchParams.get("name");
+const tag = url.searchParams.get("tag");
 
 switch (path) {
   case "/profile/login/":
@@ -36,10 +40,11 @@ switch (path) {
     handlers.postTemplate();
     handlers.setPostMenuDeleteBtnListener();
     handlers.setCreateCommentFormListener();
+    handlers.searchPosts();
     break;
   case "/profile/":
     const user = loggedIn.name;
-    handlers.setLogoutListener();
+
     templates.renderProfile(user);
     handlers.setUpdateProfileFormListener();
     // handlers.setPostMenuListener();
@@ -52,6 +57,13 @@ switch (path) {
     break;
   case "/feed/post/edit/":
     handlers.setUpdatePostFormListener();
+    break;
+  // case `/feed/?_tag=${tag}`:
+  //   console.log(tag);
+  //   handlers.displayPostByTag();
+  //   break;
+  case "/feed/index.html":
+    location.href = "/feed/";
     break;
   default:
     // Handle default case if none of the paths match
