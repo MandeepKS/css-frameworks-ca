@@ -155,27 +155,58 @@ export function createPostTemplate(postData) {
 
       //handle delete button
       if (!menuContent.hidden) {
-        const deleteBtn = document.querySelector(".delete-btn");
-        deleteBtn.dataset.id = postData.id;
-        deleteBtn.addEventListener("click", async () => {
-          const postId = deleteBtn.dataset.id;
-          console.log(postId);
-          console.log("clicked delete");
-          await removePost(postId);
-          window.location.reload();
+        const deleteBtns = menuContent.querySelectorAll(".delete-btn");
+
+        deleteBtns.forEach((deleteBtn) => {
+          deleteBtn.dataset.id = postData.id;
+          deleteBtn.addEventListener("click", async () => {
+            const postId = deleteBtn.dataset.id;
+            console.log(postId);
+            console.log("clicked delete");
+            await removePost(postId);
+            window.location.reload();
+          });
         });
       }
+
+      // if (!menuContent.hidden) {
+      //   const deleteBtn = document.querySelector(".delete-btn");
+
+      //   deleteBtn.dataset.id = postData.id;
+      //   deleteBtn.addEventListener("click", async () => {
+      //     const postId = deleteBtn.dataset.id;
+      //     console.log(postId);
+      //     console.log("clicked delete");
+      //     await removePost(postId);
+      //     window.location.reload();
+      //   });
+      // }
+
       //handle edit button
       if (!menuContent.hidden) {
-        const editBtn = document.querySelector(".edit-btn");
-        editBtn.dataset.id = postData.id;
-        editBtn.addEventListener("click", async () => {
-          const postId = editBtn.dataset.id;
-          console.log(postId);
-          console.log("clicked edit");
-          window.location.href = `/feed/post/edit/?id=${postId}`;
+        const editBtns = menuContent.querySelectorAll(".edit-btn");
+
+        editBtns.forEach((editBtn) => {
+          editBtn.dataset.id = postData.id;
+          editBtn.addEventListener("click", () => {
+            const postId = editBtn.dataset.id;
+            console.log(postId);
+            console.log("clicked edit");
+            window.location.href = `/feed/post/edit/?id=${postId}`;
+          });
         });
       }
+
+      // if (!menuContent.hidden) {
+      //   const editBtn = document.querySelector(".edit-btn");
+      //   editBtn.dataset.id = postData.id;
+      //   editBtn.addEventListener("click", async () => {
+      //     const postId = editBtn.dataset.id;
+      //     console.log(postId);
+      //     console.log("clicked edit");
+      //     window.location.href = `/feed/post/edit/?id=${postId}`;
+      //   });
+      // }
     });
   }
   // Create the body of the post
