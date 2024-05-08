@@ -4,6 +4,13 @@ import * as storage from "../../storage/index.mjs";
 const action = "/auth/login";
 const method = "post";
 
+/**
+ *
+ * @param {object} profile
+ * @returns
+ *
+ */
+
 export async function login(profile) {
   try {
     const loginURL = API_SOCIAL + action;

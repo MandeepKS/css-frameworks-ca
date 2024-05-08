@@ -1,6 +1,7 @@
 import { profileInfo } from "../api/authFetch.mjs";
 import { displayProfile } from "../api/profile/display.mjs";
 import { createPostTemplate } from "./displayPosts.mjs";
+import { createProfilePostTemplate } from "./profilePosts.mjs";
 // import { displayProfilePosts } from "../api/profile/posts.mjs";
 import { displayPosts } from "../api/posts/display.mjs";
 import { load } from "../storage/index.mjs";
@@ -14,7 +15,7 @@ import { load } from "../storage/index.mjs";
 
 const profileHeader = document.querySelector(".profile-header-img");
 
-export async function renderProfile(profile) {
+export async function renderProfile() {
   const storage = load("profile");
   const url = new URL(location.href);
   const profileName = url.searchParams.get("name") || `${storage.name}`;
@@ -22,7 +23,10 @@ export async function renderProfile(profile) {
   const posts = await displayPosts();
   //   const profile = profileInfo();
   const profileInfo = await displayProfile(profileName);
-  // console.log(profileInfo);
+  if (profileInfo.statusCode === 404) {
+    return;
+  }
+  console.log(profileInfo);
   // const allProfilePosts = profileInfo.posts;
   // console.log(allProfilePosts);
   profileHeader.src = profileInfo.banner || "/src/images/header-bg.png";
@@ -83,39 +87,6 @@ export async function renderProfile(profile) {
     // const profileContainer = document.querySelector(".profile-info");
     editContainer.style.display = "block";
   });
-
-  // const feedPosts = document.querySelector(".feed-content");
-  // posts.forEach((post) => {
-  //   if (post.author.name === profileName) {
-  //     feedPosts.appendChild(createPostTemplate(post));
-  //   }
-  // });
-
-  const feedPosts = document.querySelector(".feed-content");
-  const profilePosts = posts.filter(
-    (post) => post.author.name === profileName && post.body !== null
-  );
-  if (profilePosts.length === 0) {
-    const noPostsContainer = document.createElement("div");
-    noPostsContainer.classList.add(
-      "text-center",
-      "my-5",
-      "d-flex",
-      "flex-column"
-    );
-    const noPosts = document.createElement("p");
-    noPosts.classList.add("text-center", "text-muted");
-    noPosts.textContent = "No posts to display";
-    const addFirstPost = document.createElement("a");
-    addFirstPost.classList.add("text-center", "text-primary");
-    addFirstPost.href = "/feed/";
-    addFirstPost.textContent = "Add your first post here";
-
-    noPostsContainer.append(noPosts, addFirstPost);
-
-    feedPosts.appendChild(noPostsContainer);
-  }
-  feedPosts.append(...profilePosts.map(createPostTemplate));
 }
 //<label for="bio" class="form-label">Bio:</label>
 //<input type="text" id="bio" name="bio" class="form-control mb-3">

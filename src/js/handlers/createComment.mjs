@@ -5,7 +5,6 @@ export function setCreateCommentFormListener() {
   const commentsList = document.querySelector(".comments-list");
 
   if (form) {
-    console.log(form);
     const postId = form.getAttribute("data-form-id");
     form.addEventListener("submit", async (event) => {
       event.preventDefault();

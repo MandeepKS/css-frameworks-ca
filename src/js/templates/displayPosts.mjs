@@ -169,19 +169,6 @@ export function createPostTemplate(postData) {
         });
       }
 
-      // if (!menuContent.hidden) {
-      //   const deleteBtn = document.querySelector(".delete-btn");
-
-      //   deleteBtn.dataset.id = postData.id;
-      //   deleteBtn.addEventListener("click", async () => {
-      //     const postId = deleteBtn.dataset.id;
-      //     console.log(postId);
-      //     console.log("clicked delete");
-      //     await removePost(postId);
-      //     window.location.reload();
-      //   });
-      // }
-
       //handle edit button
       if (!menuContent.hidden) {
         const editBtns = menuContent.querySelectorAll(".edit-btn");
@@ -196,17 +183,6 @@ export function createPostTemplate(postData) {
           });
         });
       }
-
-      // if (!menuContent.hidden) {
-      //   const editBtn = document.querySelector(".edit-btn");
-      //   editBtn.dataset.id = postData.id;
-      //   editBtn.addEventListener("click", async () => {
-      //     const postId = editBtn.dataset.id;
-      //     console.log(postId);
-      //     console.log("clicked edit");
-      //     window.location.href = `/feed/post/edit/?id=${postId}`;
-      //   });
-      // }
     });
   }
   // Create the body of the post
@@ -289,6 +265,10 @@ export function createPostTemplate(postData) {
     "rounded",
     "p-3"
   );
+  const replyTo = document.createElement("p");
+  replyTo.classList.add("reply-to", "mb-0", "fst-italic");
+  replyTo.textContent = `Reply to ${postData.author.name}...`;
+  commentsContainer.append(replyTo);
 
   const commentForm = document.createElement("form");
   commentForm.classList.add("comment-form", "w-100", "d-none", "mb-3");
@@ -422,7 +402,7 @@ export function createPostTemplate(postData) {
     "d",
     "m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"
   );
-
+  reactionsIcon.style.cursor = "pointer";
   //get total count of reactions
   let totalCount = 0;
 
@@ -442,7 +422,9 @@ export function createPostTemplate(postData) {
     reactionsIcon.removeAttribute("bi-heart");
     reactionsIcon.setAttribute("class", "bi-heart-fill");
     reactionsIcon.style.color = "pink";
+
     console.log("Heart given to post");
+    reactionsTotalCount.textContent = totalCount + 1;
   });
 
   reactionIcons.append(comments, reactions);
