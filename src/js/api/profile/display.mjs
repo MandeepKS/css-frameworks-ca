@@ -21,6 +21,7 @@ export async function displayProfile(name) {
     if (!name) {
       throw new Error("Get requires a profile name");
     }
+
     const displayProfileURL = `${API_SOCIAL}${action}/${name}${posts}`;
 
     const response = await authFetch(displayProfileURL);

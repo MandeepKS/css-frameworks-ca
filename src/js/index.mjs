@@ -26,9 +26,12 @@ const loggedIn = load("profile");
 const path = location.pathname;
 const url = new URL(location.href);
 let name = url.searchParams.get("name");
-if (name === null) {
-  name = loggedIn.name;
+if (loggedIn) {
+  if (name === null) {
+    name = loggedIn.name;
+  }
 }
+
 const tag = url.searchParams.get("tag");
 
 switch (path) {
@@ -116,4 +119,4 @@ switch (path) {
 //   body: "This is my first post UPDATED twice",
 // });
 
-// post.removePost(12030);
+// post.removePost(12120);

@@ -10,19 +10,20 @@ export async function postTemplate() {
   renderPostTemplate(posts, feedPosts);
 }
 
-export async function profilePostTemplate(name) {
+export async function profilePostTemplate(profileName) {
   try {
-    const posts = await displayProfile(name);
+    const profileData = await displayProfile(profileName);
 
     const feedPosts = document.querySelector(".feed-content");
-    if (posts.statusCode === 404) {
+    if (profileData.statusCode === 404) {
       feedPosts.innerHTML = "<h1>Profile/posts not found</h1>";
       return;
     }
     feedPosts.innerHTML = "";
-    renderProfilePosts(posts, feedPosts);
+    const { name, avatar, posts } = profileData;
+    renderProfilePosts(name, avatar, posts, feedPosts);
   } catch (error) {
     console.log(error);
-    feedPosts.innerHTML = "<h1>Posts not found</h1>";
+    // feedPosts.innerHTML = "<h1>Posts not found</h1>";
   }
 }

@@ -9,14 +9,13 @@ import { displayComments } from "./displayComments.mjs";
 import { displayPostByTag } from "./displayPostByTag.mjs";
 import { profilePostTemplate } from "../handlers/postTemplate.mjs";
 
-export function createProfilePostTemplate(postData) {
+export function createProfilePostTemplate(postData, profileName, avatar) {
   const { name } = load("profile");
-  const avatar = postData.avatar;
+  //   const avatar = postData.avatar;
   const imageUrl = avatar || "/src/images/default-avatar.png";
-  const avatarAlt = `Profile image of ${postData.name}`;
+  const avatarAlt = `Profile image of ${profileName}`;
 
   //if there is no media, display nothing
-  console.log(postData);
   if (postData.media === null) {
     postData.media = "";
   }
@@ -77,18 +76,18 @@ export function createProfilePostTemplate(postData) {
     "rounded-circle",
     "object-fit-cover"
   );
-  postProfileImage.alt = `Profile image of ${postData.name}`;
+  postProfileImage.alt = `Profile image of ${profileName}`;
 
   const postTitle = document.createElement("h4");
   postTitle.classList.add("fw-bold", "h5", "mb-0");
   postTitle.textContent = `${postData.title}`;
 
   const usernameLink = document.createElement("a");
-  usernameLink.href = `/profile/?name=${postData.name}`;
+  usernameLink.href = `/profile/?name=${profileName}`;
 
   const postUsername = document.createElement("p");
   postUsername.classList.add("mb-0", "pe-2", "small");
-  postUsername.textContent = `@${postData.name}`;
+  postUsername.textContent = `@${profileName}`;
 
   const postDate = document.createElement("small");
   postDate.classList.add("text-muted", "post-date");
@@ -101,7 +100,7 @@ export function createProfilePostTemplate(postData) {
   //Create menu for delete/edit post
   const menu = document.createElement("div");
   //if name = storage name, show menu
-  if (postData.name === name) {
+  if (profileName === name) {
     //add an icon for a dropdown menu with a edit and delete button inside it when clicked
     menu.classList.add(
       "postmenu",
@@ -235,14 +234,31 @@ export function createProfilePostTemplate(postData) {
   post.append(postContainer);
   return post;
 }
-// make function that will create a template for a post
-export function renderProfilePosts(postDataList, parent) {
-  console.log("Received postDataList:", postDataList);
 
-  const filteredDataList = postDataList.posts.filter(
-    (postData) => postData.body !== null
+export function renderProfilePosts(name, avatar, profileData, parent) {
+  //   console.log("Received profileData:", profileData);
+
+  //   const { name, avatar, posts } = profileData;
+  //   console.log(name);
+
+  const sortedPosts = profileData.sort(
+    (a, b) => new Date(b.created) - new Date(a.created)
   );
-  parent.append(...filteredDataList.map(createProfilePostTemplate));
+
+  // Filter the sorted list to remove posts with null body and null media
+  const filteredPosts = sortedPosts.filter(
+    (postData) =>
+      (postData.body !== null && postData.body !== "") ||
+      (postData.media !== "" && postData.media !== null)
+  );
+
+  // Render the sorted and filtered posts
+  parent.innerHTML = ""; // Clear the parent container
+  parent.append(
+    ...filteredPosts.map((postData) =>
+      createProfilePostTemplate(postData, name, avatar)
+    )
+  );
 }
 
 // const url = new URL(location.href);

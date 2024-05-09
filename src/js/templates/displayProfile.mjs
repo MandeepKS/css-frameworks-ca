@@ -20,7 +20,6 @@ export async function renderProfile() {
   const url = new URL(location.href);
   const profileName = url.searchParams.get("name") || `${storage.name}`;
   // const profileInformation = await displayProfilePosts(profileName);
-  const posts = await displayPosts();
   //   const profile = profileInfo();
   const profileInfo = await displayProfile(profileName);
   if (profileInfo.statusCode === 404) {
@@ -76,16 +75,31 @@ export async function renderProfile() {
   const followButton = document.querySelector(".follow-button");
   const editButton = document.querySelector(".edit-button");
   const editContainer = document.querySelector(".profile-edit");
+  const editForm = document.querySelector("#edit-profile");
+  const btnContainer = document.querySelector(".btn-container");
 
   if (profileInfo.name === storage.name) {
     editButton.children[0].removeAttribute("hidden");
     followButton.children[0].remove();
   }
 
+  // editButton.addEventListener("click", () => {
+  //   editContainer.style.display = "block";
+  //   editButton.children[0].setAttribute("hidden", "hidden");
+  // });
+
   editButton.addEventListener("click", () => {
-    editButton.children[0].setAttribute("hidden", "hidden");
-    // const profileContainer = document.querySelector(".profile-info");
     editContainer.style.display = "block";
+    editButton.children[0].setAttribute("hidden", "hidden");
+    const cancelBtn = document.createElement("button");
+    cancelBtn.classList.add("btn", "btn-outline-primary", "mb-4", "ms-1");
+    cancelBtn.textContent = "Cancel";
+    btnContainer.appendChild(cancelBtn);
+    cancelBtn.addEventListener("click", () => {
+      editButton.children[0].removeAttribute("hidden");
+      editContainer.style.display = "none";
+      cancelBtn.remove();
+    });
   });
 }
 //<label for="bio" class="form-label">Bio:</label>

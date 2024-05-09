@@ -442,7 +442,9 @@ export function createPostTemplate(postData) {
 export function renderPostTemplate(postDataList, parent) {
   console.log("Received postDataList:", postDataList);
   const filteredDataList = postDataList.filter(
-    (postData) => postData.body !== null
+    (postData) =>
+      (postData.body !== null && postData.body !== "") ||
+      (postData.media !== "" && postData.media !== null)
   );
   parent.append(...filteredDataList.map(createPostTemplate));
 }
