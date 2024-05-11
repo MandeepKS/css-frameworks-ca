@@ -245,7 +245,7 @@ export function renderProfilePosts(name, avatar, profileData, parent) {
     (a, b) => new Date(b.created) - new Date(a.created)
   );
 
-  // Filter the sorted list to remove posts with null body and null media
+  // Filter the sorted list to remove posts with both null body and null media
   const filteredPosts = sortedPosts.filter(
     (postData) =>
       (postData.body !== null && postData.body !== "") ||
@@ -253,7 +253,7 @@ export function renderProfilePosts(name, avatar, profileData, parent) {
   );
 
   // Render the sorted and filtered posts
-  parent.innerHTML = ""; // Clear the parent container
+  parent.innerHTML = "";
   parent.append(
     ...filteredPosts.map((postData) =>
       createProfilePostTemplate(postData, name, avatar)
@@ -265,73 +265,3 @@ export function renderProfilePosts(name, avatar, profileData, parent) {
 // const profileName = url.searchParams.get("name") || `${name}`;
 
 // profilePostTemplate(profileName);
-
-// {name: 'apekatt4', email: 'apekatt4@noroff.no', banner: null, avatar: 'https://t4.ftcdn.net/jpg/03/89/39/09/360_F_389390965_lwqVX10TBdFH2WMBH6GGF8pcNiOhzfnb.jpg', posts: Array(5), …}
-// avatar
-// :
-// "https://t4.ftcdn.net/jpg/03/89/39/09/360_F_389390965_lwqVX10TBdFH2WMBH6GGF8pcNiOhzfnb.jpg"
-// banner
-// :
-// null
-// email
-// :
-// "apekatt4@noroff.no"
-// name
-// :
-// "apekatt4"
-// posts
-// :
-// Array(5)
-// 0
-// :
-// body
-// :
-// null
-// created
-// :
-// "2024-04-23T10:26:47.287Z"
-// id
-// :
-// 11868
-// media
-// :
-// null
-// owner
-// :
-// "apekatt4"
-// tags
-// :
-// []
-// title
-// :
-// "heiheihei"
-// updated
-// :
-// "2024-04-23T10:26:47.287Z"
-// [[Prototype]]
-// :
-// Object
-// 1
-// :
-// {id: 12031, owner: 'apekatt4', created: '2024-05-03T11:01:40.720Z', updated: '2024-05-07T12:12:06.526Z', title: 'could I edit this?', …}
-// 2
-// :
-// {id: 11909, owner: 'apekatt4', created: '2024-04-23T11:01:13.359Z', updated: '2024-04-23T11:20:17.834Z', title: 'it worked??', …}
-// 3
-// :
-// {id: 11919, owner: 'apekatt4', created: '2024-04-23T12:16:26.428Z', updated: '2024-04-23T12:36:30.142Z', title: 'heiheisveis', …}
-// 4
-// :
-// {id: 12104, owner: 'apekatt4', created: '2024-05-08T12:03:42.254Z', updated: '2024-05-08T12:05:36.103Z', title: 'Batman was here 🦇', …}
-// length
-// :
-// 5
-// [[Prototype]]
-// :
-// Array(0)
-// _count
-// :
-// {posts: 5, followers: 0, following: 0}
-// [[Prototype]]
-// :
-// Object

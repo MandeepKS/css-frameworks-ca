@@ -328,7 +328,6 @@ export function createPostTemplate(postData) {
       commentHeader.classList.add("comment-header", "d-flex");
       const commentHeaderAuthorInfo = document.createElement("div");
       commentHeaderAuthorInfo.classList.add("author-info");
-      //The avatar of the comment author works, but i get a error /feed/null 404 not found
       const commentAuthorAvatar = document.createElement("img");
       const profileAvatar =
         comment.author.avatar || "/src/images/default-avatar.png";

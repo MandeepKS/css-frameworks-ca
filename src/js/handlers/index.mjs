@@ -10,3 +10,4 @@ export * from "./postTemplate.mjs";
 export * from "./createComment.mjs";
 export * from "./searchResult.mjs";
 export * from "./loggedInStatus.mjs";
+export * from "./filterPosts.mjs";

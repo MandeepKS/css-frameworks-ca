@@ -5,22 +5,61 @@ import { renderProfilePosts } from "../templates/profilePosts.mjs";
 
 export async function postTemplate() {
   const posts = await displayPosts();
-  const feedPosts = document.querySelector(".feed-content");
+  const feedPosts = document.querySelector(".feed-posts");
   feedPosts.innerHTML = "";
   renderPostTemplate(posts, feedPosts);
+}
+
+export async function mediaPostTemplate() {
+  const posts = await displayPosts();
+  const feedPosts = document.querySelector(".feed-posts");
+  feedPosts.innerHTML = "";
+  //filter out posts that have media
+  const postsFilter = posts.filter(
+    (post) => post.media !== "" && post.media !== null
+  );
+
+  renderPostTemplate(postsFilter, feedPosts);
 }
 
 export async function profilePostTemplate(profileName) {
   try {
     const profileData = await displayProfile(profileName);
 
-    const feedPosts = document.querySelector(".feed-content");
+    const feedPosts = document.querySelector(".feed-posts");
     if (profileData.statusCode === 404) {
-      feedPosts.innerHTML = "<h1>Profile/posts not found</h1>";
+      feedPosts.innerHTML = "<h1>Profile and posts not found</h1>";
       return;
     }
     feedPosts.innerHTML = "";
     const { name, avatar, posts } = profileData;
+    renderProfilePosts(name, avatar, posts, feedPosts);
+    if (posts.length === 0) {
+      feedPosts.innerHTML = `<div class="text-center"><p>No posts made by ${name}</p></div>`;
+    }
+  } catch (error) {
+    console.log(error);
+    feedPosts.innerHTML = `<p>Posts not found</p>`;
+  }
+}
+
+export async function mediaProfilePostTemplate(profileName) {
+  try {
+    const profileData = await displayProfile(profileName);
+
+    const feedPosts = document.querySelector(".feed-posts");
+    if (profileData.statusCode === 404) {
+      feedPosts.innerHTML = "<h1>Profile and posts not found</h1>";
+      return;
+    }
+    feedPosts.innerHTML = "";
+    //filter out posts that have media
+    const postsFilter = profileData.posts.filter(
+      (post) => post.media !== "" && post.media !== null
+    );
+    console.log(postsFilter);
+
+    const { name, avatar, posts } = postsFilter;
     renderProfilePosts(name, avatar, posts, feedPosts);
   } catch (error) {
     console.log(error);

@@ -48,6 +48,7 @@ switch (path) {
     handlers.setPostMenuDeleteBtnListener();
     handlers.setCreateCommentFormListener();
     handlers.searchProfile();
+    handlers.filterPosts();
     // handlers.searchResult();
     displayUsername();
     break;
@@ -58,6 +59,7 @@ switch (path) {
     templates.renderProfile(user);
     handlers.setUpdateProfileFormListener();
     handlers.profilePostTemplate(name);
+    // handlers.filterPosts();
     // handlers.setPostMenuListener();
     break;
   case `/profile/?name=${name}`:

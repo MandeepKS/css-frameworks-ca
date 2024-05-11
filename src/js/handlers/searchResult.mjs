@@ -24,8 +24,8 @@ export async function searchProfile() {
       while (true) {
         const searchResults = await displayProfiles(limit, offset);
         searchResults.forEach((profile) => {
-          if (profile._count.posts > 3) {
-            console.log(profile);
+          if (profile._count.posts > 1) {
+            console.log(profile.name);
           }
           //   if (profile._count.posts.length > 0) {
           //     console.log(profile);
@@ -53,7 +53,7 @@ export async function searchProfile() {
           searchBtn.disabled = false;
           searchBtn.innerText = "Search";
           searchContainer.innerHTML +=
-            "<p>Profile not found within the latest 3000 profiles created</p>";
+            "<p>Profile not found within the last 3000 in the alphabet</p>";
           break;
         }
 
