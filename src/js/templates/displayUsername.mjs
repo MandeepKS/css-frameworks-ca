@@ -5,9 +5,10 @@ export function displayUsername() {
     return;
   } else {
     const profile = load("profile");
-    visitProfile.innerHTML += profile.name.toUpperCase();
-    if (profile.name === "undefined") {
-      visitProfile.innerHTML += "Profile";
+    if (profile.statusCode === 401) {
+      window.location.href = "/";
+    } else {
+      visitProfile.innerHTML += profile.name.toUpperCase();
     }
   }
 }

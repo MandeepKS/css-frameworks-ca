@@ -3,7 +3,9 @@ import { authFetch } from "../authFetch.mjs";
 import { profileInfo } from "../authFetch.mjs";
 
 const action = "/profiles";
-const posts = "?_posts=true";
+const posts = "_posts=true";
+const followers = "_followers=true";
+const following = "_following=true";
 
 export async function displayProfiles(limit = 100, offset = 0) {
   try {
@@ -22,7 +24,7 @@ export async function displayProfile(name) {
       throw new Error("Get requires a profile name");
     }
 
-    const displayProfileURL = `${API_SOCIAL}${action}/${name}${posts}`;
+    const displayProfileURL = `${API_SOCIAL}${action}/${name}?${posts}&${followers}&${following}`;
 
     const response = await authFetch(displayProfileURL);
 

@@ -2,16 +2,11 @@ import { profileInfo } from "../api/authFetch.mjs";
 import { displayProfile } from "../api/profile/display.mjs";
 import { createPostTemplate } from "./displayPosts.mjs";
 import { createProfilePostTemplate } from "./profilePosts.mjs";
-// import { displayProfilePosts } from "../api/profile/posts.mjs";
 import { displayPosts } from "../api/posts/display.mjs";
 import { load } from "../storage/index.mjs";
-
-// posts.forEach((post) => {
-//   if (post.author.name === profileName) {
-//     console.log("All posts", post);
-//   }
-// });
-// console.log("Posts by profile", profileInformation);
+import { setFollowBtnListener } from "../handlers/index.mjs";
+import { setUnfollowBtnListener } from "../handlers/index.mjs";
+import { setEditProfileBtnListener } from "../handlers/index.mjs";
 
 const profileHeader = document.querySelector(".profile-header-img");
 
@@ -19,15 +14,13 @@ export async function renderProfile() {
   const storage = load("profile");
   const url = new URL(location.href);
   const profileName = url.searchParams.get("name") || `${storage.name}`;
-  // const profileInformation = await displayProfilePosts(profileName);
-  //   const profile = profileInfo();
   const profileInfo = await displayProfile(profileName);
   if (profileInfo.statusCode === 404) {
     return;
   }
   console.log(profileInfo);
-  // const allProfilePosts = profileInfo.posts;
-  // console.log(allProfilePosts);
+  const followingList = profileInfo.following;
+  const followersList = profileInfo.followers;
   profileHeader.src = profileInfo.banner || "/src/images/header-bg.png";
   const avatarURL = profileInfo.avatar || "/src/images/default-avatar.png";
   const followInfo = document.querySelector(".name-stats");
@@ -43,10 +36,10 @@ export async function renderProfile() {
     "fst-italic"
   );
   const following = document.createElement("p");
-  following.classList.add("m-0");
+  following.classList.add("following", "m-0");
   following.textContent = profileInfo._count.following + " following";
   const followers = document.createElement("p");
-  followers.classList.add("m-0");
+  followers.classList.add("followers", "m-0");
   followers.textContent = profileInfo._count.followers + " followers";
 
   followStats.append(following, followers);
@@ -64,43 +57,42 @@ export async function renderProfile() {
                             <p>${bio}</p>
                             <p>${profileInfo._count.posts} posts</p>
                         </div>
-                        <div class="follow-button d-flex justify-content-center mb-3">
-                            <input class="col-4 col-sm-3 col-lg-4 btn btn-primary" type="submit" value="Follow">
+                        <div class="follow-button d-flex justify-content-center">
+                            <input class="col-6 col-sm-4 col-lg-6 btn btn-primary" id="followBtn" type="submit" value="Follow">
                         </div>
-                        <div class="edit-button d-flex justify-content-center mb-3">
-                            <input class="col-6 col-sm-3 col-lg-6 btn btn-outline-primary" type="button" hidden="hidden" value="Edit Profile">
+                        <div class="unfollow-button d-flex justify-content-center">
+                            <input class="col-6 col-sm-4 col-lg-6 btn btn-primary" id="unfollowBtn" type="submit" value="Unfollow" hidden>
+                        </div>
+                        <div class="edit-button d-flex justify-content-center">
+                            <input class="col-6 col-sm-4 col-lg-6 btn btn-outline-primary" type="button" hidden="hidden" value="Edit Profile">
                         </div>
   `;
 
-  const followButton = document.querySelector(".follow-button");
+  // Hide/show follow/unfollow button based on user's follow status
+  const unfollowBtn = document.querySelector("#unfollowBtn");
+  const followBtn = document.querySelector("#followBtn");
+
+  followersList.forEach((follower) => {
+    if (follower.name === storage.name) {
+      followBtn.setAttribute("hidden", "hidden");
+      unfollowBtn.removeAttribute("hidden");
+    }
+  });
+
+  // Show edit button if user is viewing their own profile, and hide follow button
   const editButton = document.querySelector(".edit-button");
-  const editContainer = document.querySelector(".profile-edit");
-  const editForm = document.querySelector("#edit-profile");
-  const btnContainer = document.querySelector(".btn-container");
 
   if (profileInfo.name === storage.name) {
     editButton.children[0].removeAttribute("hidden");
-    followButton.children[0].remove();
+    followBtn.remove();
   }
 
-  // editButton.addEventListener("click", () => {
-  //   editContainer.style.display = "block";
-  //   editButton.children[0].setAttribute("hidden", "hidden");
-  // });
-
-  editButton.addEventListener("click", () => {
-    editContainer.style.display = "block";
-    editButton.children[0].setAttribute("hidden", "hidden");
-    const cancelBtn = document.createElement("button");
-    cancelBtn.classList.add("btn", "btn-outline-primary", "mb-4", "ms-1");
-    cancelBtn.textContent = "Cancel";
-    btnContainer.appendChild(cancelBtn);
-    cancelBtn.addEventListener("click", () => {
-      editButton.children[0].removeAttribute("hidden");
-      editContainer.style.display = "none";
-      cancelBtn.remove();
-    });
-  });
+  // run all the profile page event listeners
+  setFollowBtnListener();
+  setUnfollowBtnListener();
+  setEditProfileBtnListener();
 }
+
+//so far unused bio field
 //<label for="bio" class="form-label">Bio:</label>
 //<input type="text" id="bio" name="bio" class="form-control mb-3">

@@ -178,8 +178,8 @@ export function createProfilePostTemplate(postData, profileName, avatar) {
           editBtn.dataset.id = postData.id;
           editBtn.addEventListener("click", () => {
             const postId = editBtn.dataset.id;
-            console.log(postId);
-            console.log("clicked edit");
+            // console.log(postId);
+            // console.log("clicked edit");
             window.location.href = `/feed/post/edit/?id=${postId}`;
           });
         });

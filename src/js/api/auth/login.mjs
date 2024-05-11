@@ -1,5 +1,6 @@
 import { API_SOCIAL } from "../constants.mjs";
 import * as storage from "../../storage/index.mjs";
+const errorMsg = document.querySelector(".error-message");
 
 const action = "/auth/login";
 const method = "post";
@@ -27,8 +28,14 @@ export async function login(profile) {
     const { accessToken, ...user } = await response.json();
     storage.save("token", accessToken);
     storage.save("profile", user);
-    alert("Login successful");
-    window.location.href = "/profile/";
+    if (!response.ok) {
+      errorMsg.textContent = `Login failed`;
+      alert("Login failed");
+      throw new Error("Login failed");
+    } else {
+      alert("Login successful");
+      window.location.href = "/profile/";
+    }
   } catch (error) {
     console.log(error);
   }

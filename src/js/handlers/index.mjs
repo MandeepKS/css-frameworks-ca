@@ -11,3 +11,6 @@ export * from "./createComment.mjs";
 export * from "./searchResult.mjs";
 export * from "./loggedInStatus.mjs";
 export * from "./filterPosts.mjs";
+export * from "./followButton.mjs";
+export * from "./unfollowBtn.mjs";
+export * from "./editProfileBtn.mjs";
