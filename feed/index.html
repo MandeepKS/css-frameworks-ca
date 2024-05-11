@@ -57,10 +57,6 @@ padding-right: 0px;
                                 <input type="text" class="form-control" name="tags" placeholder="Tags">
                             </div>
 
-                            <!-- <div class="form-group">
-                                <input type="hidden" class="form-control" name="woopsieID">
-                            </div> -->
-
                         </div>
                         <button type="submit" class="btn btn-primary col-4 col-sm-2 h-50">Share Post</button>
                     </form>
@@ -95,10 +91,14 @@ padding-right: 0px;
                 </div>
                 <div class="col-12 col-lg-3  feed-menu pt-4">
                     <div class="search-container">
-                        <form id="search-form" class="d-flex mx-3 col-11">
-                            <input name="searchTerm" id="searchTerm" class="form-control me-2" type="text"
-                                placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success search-btn" type="submit">Search</button>
+                        <form id="search-form" class="d-flex flex-column mx-3 col-11">
+                            <label for="searchTerm">Search for a profile</label>
+                            <div class="search d-flex flex-row">
+                                <input name="searchTerm" id="searchTerm" class="form-control me-2" type="text"
+                                    placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success search-btn" type="submit"><i
+                                        class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
                         </form>
                     </div>
                     <div class="navbar">

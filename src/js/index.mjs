@@ -59,12 +59,14 @@ switch (path) {
     templates.renderProfile(user);
     handlers.setUpdateProfileFormListener();
     handlers.profilePostTemplate(name);
+    // handlers.setFollowBtnListener();
     // handlers.filterPosts();
     // handlers.setPostMenuListener();
     break;
   case `/profile/?name=${name}`:
     handlers.loggedInStatus();
     templates.renderProfile(name);
+    // handlers.setFollowBtnListener();
     // displayUsername();
     break;
   case "/feed/post/":

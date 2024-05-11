@@ -11,7 +11,5 @@ export function registerFormListener() {
 
     //send it to the API
     register(profile);
-    alert("You have successfully registered! Please login to continue.");
-    window.location.href = "/profile/login/";
   });
 }

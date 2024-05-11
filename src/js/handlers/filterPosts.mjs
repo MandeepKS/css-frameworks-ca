@@ -8,9 +8,9 @@ const filterAllBtn = document.querySelector("#radioWoopsies");
 const filterMediaBtn = document.querySelector("#radioReplies");
 const feedPosts = document.querySelector(".feed-posts");
 const path = location.pathname;
-const name =
-  new URL(location.href).searchParams.get("name") ||
-  profileName("profile").name;
+// const name =
+//   new URL(location.href).searchParams.get("name") ||
+//   profileName("profile").name;
 
 export function filterPosts() {
   filterAllBtn.addEventListener("click", () => {
