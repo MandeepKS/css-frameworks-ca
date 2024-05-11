@@ -8,3 +8,6 @@ export * from "./openPostMenu.mjs";
 export * from "./postMenuDeleteBtn.mjs";
 export * from "./postTemplate.mjs";
 export * from "./createComment.mjs";
+export * from "./searchResult.mjs";
+export * from "./loggedInStatus.mjs";
+export * from "./filterPosts.mjs";

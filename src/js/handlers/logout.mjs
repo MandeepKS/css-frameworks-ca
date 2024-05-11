@@ -1,8 +1,8 @@
 export function setLogoutListener() {
   const logout = document.querySelector(".logout");
-  logout.style.cursor = "pointer";
 
   if (logout) {
+    logout.style.cursor = "pointer";
     logout.addEventListener("click", () => {
       // Remove token from local storage
       localStorage.removeItem("profile");

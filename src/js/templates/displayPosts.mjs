@@ -6,6 +6,7 @@ import { saveReactionToPost } from "../api/posts/reactToPost.mjs";
 // import { commentToPost, getComments } from "../api/posts/index.mjs";
 import { setCreateCommentFormListener } from "../handlers/index.mjs";
 import { displayComments } from "./displayComments.mjs";
+import { displayPostByTag } from "./displayPostByTag.mjs";
 
 export function createPostTemplate(postData) {
   const { name } = load("profile");
@@ -21,9 +22,22 @@ export function createPostTemplate(postData) {
   // Edit how the date is displayed
   const formattedDate = new Date(postData.created).toLocaleDateString("nb-NO", {
     day: "numeric",
-    month: "numeric",
+    month: "long",
     year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
   });
+
+  const formattedUpdatedDate = new Date(postData.updated).toLocaleDateString(
+    "nb-NO",
+    {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    }
+  );
 
   const post = document.createElement("div");
   post.classList.add("feed-example", "mb-4");
@@ -48,7 +62,8 @@ export function createPostTemplate(postData) {
     "name-date",
     "d-flex",
     "flex-wrap",
-    "align-items-center"
+    "align-items-center",
+    "mb-2"
   );
 
   const postProfileImage = document.createElement("img");
@@ -63,7 +78,7 @@ export function createPostTemplate(postData) {
   postProfileImage.alt = `Profile image of ${postData.author.name}`;
 
   const postTitle = document.createElement("h4");
-  postTitle.classList.add("fw-bold", "h5", "mx-1", "mb-0");
+  postTitle.classList.add("fw-bold", "h5", "mb-0");
   postTitle.textContent = `${postData.title}`;
 
   const usernameLink = document.createElement("a");
@@ -74,8 +89,12 @@ export function createPostTemplate(postData) {
   postUsername.textContent = `@${postData.author.name}`;
 
   const postDate = document.createElement("small");
-  postDate.classList.add("text-muted");
+  postDate.classList.add("text-muted", "post-date");
   postDate.textContent = `${formattedDate}`;
+  //on mouseover, if post is updated, updated date displays in a tooltip
+  if (postData.updated !== postData.created) {
+    postDate.title = `Updated: ${formattedUpdatedDate}`;
+  }
 
   //Create menu for delete/edit post
   const menu = document.createElement("div");
@@ -94,6 +113,7 @@ export function createPostTemplate(postData) {
       "pt-2"
     );
     menu.innerHTML = `<i class="fa-solid fa-ellipsis-vertical"></i>`;
+    menu.style.cursor = "pointer";
     const menuContent = document.createElement("div");
     menuContent.classList.add(
       "postmenu-container",
@@ -135,25 +155,32 @@ export function createPostTemplate(postData) {
 
       //handle delete button
       if (!menuContent.hidden) {
-        const deleteBtn = document.querySelector(".delete-btn");
-        deleteBtn.dataset.id = postData.id;
-        deleteBtn.addEventListener("click", async () => {
-          const postId = deleteBtn.dataset.id;
-          console.log(postId);
-          console.log("clicked delete");
-          await removePost(postId);
-          window.location.reload();
+        const deleteBtns = menuContent.querySelectorAll(".delete-btn");
+
+        deleteBtns.forEach((deleteBtn) => {
+          deleteBtn.dataset.id = postData.id;
+          deleteBtn.addEventListener("click", async () => {
+            const postId = deleteBtn.dataset.id;
+            console.log(postId);
+            console.log("clicked delete");
+            await removePost(postId);
+            window.location.reload();
+          });
         });
       }
+
       //handle edit button
       if (!menuContent.hidden) {
-        const editBtn = document.querySelector(".edit-btn");
-        editBtn.dataset.id = postData.id;
-        editBtn.addEventListener("click", async () => {
-          const postId = editBtn.dataset.id;
-          console.log(postId);
-          console.log("clicked edit");
-          window.location.href = `/feed/post/edit/?id=${postId}`;
+        const editBtns = menuContent.querySelectorAll(".edit-btn");
+
+        editBtns.forEach((editBtn) => {
+          editBtn.dataset.id = postData.id;
+          editBtn.addEventListener("click", () => {
+            const postId = editBtn.dataset.id;
+            console.log(postId);
+            console.log("clicked edit");
+            window.location.href = `/feed/post/edit/?id=${postId}`;
+          });
         });
       }
     });
@@ -188,8 +215,14 @@ export function createPostTemplate(postData) {
       "me-1",
       "mb-1"
     );
+    tagElement.style.cursor = "pointer";
     tagElement.textContent = tag;
     postTags.append(tagElement);
+
+    //select the tag clicked
+    tagElement.addEventListener("click", () => {
+      displayPostByTag(tag);
+    });
   });
 
   //create the interaction container of the post
@@ -232,6 +265,10 @@ export function createPostTemplate(postData) {
     "rounded",
     "p-3"
   );
+  const replyTo = document.createElement("p");
+  replyTo.classList.add("reply-to", "mb-0", "fst-italic");
+  replyTo.textContent = `Reply to ${postData.author.name}...`;
+  commentsContainer.append(replyTo);
 
   const commentForm = document.createElement("form");
   commentForm.classList.add("comment-form", "w-100", "d-none", "mb-3");
@@ -275,7 +312,7 @@ export function createPostTemplate(postData) {
   const commentsList = document.createElement("ul");
   commentsList.classList.add("list-unstyled", "comments-list");
   if (postData.comments.length > 0) {
-    console.log("Post Comments: ", postData.title, postData.comments);
+    // console.log("Post Comments: ", postData.title, postData.comments);
     postData.comments.forEach((comment) => {
       const commentItem = document.createElement("li");
       commentItem.classList.add(
@@ -291,7 +328,6 @@ export function createPostTemplate(postData) {
       commentHeader.classList.add("comment-header", "d-flex");
       const commentHeaderAuthorInfo = document.createElement("div");
       commentHeaderAuthorInfo.classList.add("author-info");
-      //The avatar of the comment author works, but i get a error /feed/null 404 not found
       const commentAuthorAvatar = document.createElement("img");
       const profileAvatar =
         comment.author.avatar || "/src/images/default-avatar.png";
@@ -365,7 +401,7 @@ export function createPostTemplate(postData) {
     "d",
     "m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"
   );
-
+  reactionsIcon.style.cursor = "pointer";
   //get total count of reactions
   let totalCount = 0;
 
@@ -385,15 +421,17 @@ export function createPostTemplate(postData) {
     reactionsIcon.removeAttribute("bi-heart");
     reactionsIcon.setAttribute("class", "bi-heart-fill");
     reactionsIcon.style.color = "pink";
+
     console.log("Heart given to post");
+    reactionsTotalCount.textContent = totalCount + 1;
   });
 
   reactionIcons.append(comments, reactions);
   interactionContainer.append(reactionIcons);
 
   usernameLink.appendChild(postUsername);
-  postContent.append(postProfileImage, postTitle, usernameLink, postDate, menu);
-  postBody.append(postText, postMedia);
+  postContent.append(postProfileImage, usernameLink, postDate, menu);
+  postBody.append(postTitle, postText, postMedia);
   postIDlink.appendChild(postBody);
   postContainer.append(postContent, postIDlink, postTags);
   post.append(postContainer, interactionContainer);
@@ -403,7 +441,9 @@ export function createPostTemplate(postData) {
 export function renderPostTemplate(postDataList, parent) {
   console.log("Received postDataList:", postDataList);
   const filteredDataList = postDataList.filter(
-    (postData) => postData.body !== null
+    (postData) =>
+      (postData.body !== null && postData.body !== "") ||
+      (postData.media !== "" && postData.media !== null)
   );
   parent.append(...filteredDataList.map(createPostTemplate));
 }

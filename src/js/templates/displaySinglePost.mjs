@@ -9,6 +9,7 @@ const postID = urlParams.get("id");
 // render a single post by ID
 export async function displaySinglePost() {
   const container = document.querySelector(".feed-content");
+  container.innerHTML = "";
   try {
     const singlePost = await displayPost(postID);
     //IF POST NOT FOUND
@@ -16,6 +17,7 @@ export async function displaySinglePost() {
     //   container.innerHTML = "<h1>Post not found</h1>";
     //   return;
     // }
+
     container.appendChild(createPostTemplate(singlePost));
     console.log(singlePost);
   } catch (error) {

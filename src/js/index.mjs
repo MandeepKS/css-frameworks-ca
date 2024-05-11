@@ -8,6 +8,9 @@ import * as profile from "./api/profile/index.mjs";
 import * as post from "./api/posts/index.mjs";
 import { displayProfile } from "./api/profile/display.mjs";
 import { load } from "./storage/index.mjs";
+import { displayUsername } from "./templates/displayUsername.mjs";
+
+handlers.setLogoutListener();
 
 const loggedIn = load("profile");
 
@@ -22,7 +25,14 @@ const loggedIn = load("profile");
 
 const path = location.pathname;
 const url = new URL(location.href);
-const name = url.searchParams.get("name");
+let name = url.searchParams.get("name");
+if (loggedIn) {
+  if (name === null) {
+    name = loggedIn.name;
+  }
+}
+
+const tag = url.searchParams.get("tag");
 
 switch (path) {
   case "/profile/login/":
@@ -32,29 +42,48 @@ switch (path) {
     handlers.registerFormListener();
     break;
   case "/feed/":
+    handlers.loggedInStatus();
     handlers.setCreatePostFormListener();
     handlers.postTemplate();
     handlers.setPostMenuDeleteBtnListener();
     handlers.setCreateCommentFormListener();
+    handlers.searchProfile();
+    handlers.filterPosts();
+    // handlers.searchResult();
+    displayUsername();
     break;
   case "/profile/":
+    handlers.loggedInStatus();
     const user = loggedIn.name;
-    handlers.setLogoutListener();
+    displayUsername();
     templates.renderProfile(user);
     handlers.setUpdateProfileFormListener();
+    handlers.profilePostTemplate(name);
+    // handlers.filterPosts();
     // handlers.setPostMenuListener();
     break;
   case `/profile/?name=${name}`:
+    handlers.loggedInStatus();
     templates.renderProfile(name);
+    // displayUsername();
     break;
   case "/feed/post/":
+    handlers.loggedInStatus();
+    displayUsername();
     templates.displaySinglePost();
     break;
   case "/feed/post/edit/":
+    handlers.loggedInStatus();
     handlers.setUpdatePostFormListener();
+    displayUsername();
     break;
+  // case `/feed/?_tag=${tag}`:
+  //   console.log(tag);
+  //   handlers.displayPostByTag();
+  //   break;
   default:
     // Handle default case if none of the paths match
+    location.href = "/feed/";
     break;
 }
 // if (path === "/profile/login/") {
@@ -92,4 +121,4 @@ switch (path) {
 //   body: "This is my first post UPDATED twice",
 // });
 
-// post.removePost(12030);
+// post.removePost(12120);

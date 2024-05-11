@@ -1,6 +1,7 @@
 import { profileInfo } from "../api/authFetch.mjs";
 import { displayProfile } from "../api/profile/display.mjs";
 import { createPostTemplate } from "./displayPosts.mjs";
+import { createProfilePostTemplate } from "./profilePosts.mjs";
 // import { displayProfilePosts } from "../api/profile/posts.mjs";
 import { displayPosts } from "../api/posts/display.mjs";
 import { load } from "../storage/index.mjs";
@@ -14,17 +15,19 @@ import { load } from "../storage/index.mjs";
 
 const profileHeader = document.querySelector(".profile-header-img");
 
-export async function renderProfile(profile) {
+export async function renderProfile() {
   const storage = load("profile");
   const url = new URL(location.href);
   const profileName = url.searchParams.get("name") || `${storage.name}`;
   // const profileInformation = await displayProfilePosts(profileName);
-  const posts = await displayPosts();
   //   const profile = profileInfo();
   const profileInfo = await displayProfile(profileName);
-  // console.log(profileInfo);
-  const allProfilePosts = profileInfo.posts;
-  console.log(allProfilePosts);
+  if (profileInfo.statusCode === 404) {
+    return;
+  }
+  console.log(profileInfo);
+  // const allProfilePosts = profileInfo.posts;
+  // console.log(allProfilePosts);
   profileHeader.src = profileInfo.banner || "/src/images/header-bg.png";
   const avatarURL = profileInfo.avatar || "/src/images/default-avatar.png";
   const followInfo = document.querySelector(".name-stats");
@@ -72,50 +75,32 @@ export async function renderProfile(profile) {
   const followButton = document.querySelector(".follow-button");
   const editButton = document.querySelector(".edit-button");
   const editContainer = document.querySelector(".profile-edit");
+  const editForm = document.querySelector("#edit-profile");
+  const btnContainer = document.querySelector(".btn-container");
 
   if (profileInfo.name === storage.name) {
     editButton.children[0].removeAttribute("hidden");
     followButton.children[0].remove();
   }
 
-  editButton.addEventListener("click", () => {
-    editButton.children[0].setAttribute("hidden", "hidden");
-    // const profileContainer = document.querySelector(".profile-info");
-    editContainer.style.display = "block";
-  });
-
-  // const feedPosts = document.querySelector(".feed-content");
-  // posts.forEach((post) => {
-  //   if (post.author.name === profileName) {
-  //     feedPosts.appendChild(createPostTemplate(post));
-  //   }
+  // editButton.addEventListener("click", () => {
+  //   editContainer.style.display = "block";
+  //   editButton.children[0].setAttribute("hidden", "hidden");
   // });
 
-  const feedPosts = document.querySelector(".feed-content");
-  const profilePosts = posts.filter(
-    (post) => post.author.name === profileName && post.body !== null
-  );
-  if (profilePosts.length === 0) {
-    const noPostsContainer = document.createElement("div");
-    noPostsContainer.classList.add(
-      "text-center",
-      "my-5",
-      "d-flex",
-      "flex-column"
-    );
-    const noPosts = document.createElement("p");
-    noPosts.classList.add("text-center", "text-muted");
-    noPosts.textContent = "No posts to display";
-    const addFirstPost = document.createElement("a");
-    addFirstPost.classList.add("text-center", "text-primary");
-    addFirstPost.href = "/feed/";
-    addFirstPost.textContent = "Add your first post here";
-
-    noPostsContainer.append(noPosts, addFirstPost);
-
-    feedPosts.appendChild(noPostsContainer);
-  }
-  feedPosts.append(...profilePosts.map(createPostTemplate));
+  editButton.addEventListener("click", () => {
+    editContainer.style.display = "block";
+    editButton.children[0].setAttribute("hidden", "hidden");
+    const cancelBtn = document.createElement("button");
+    cancelBtn.classList.add("btn", "btn-outline-primary", "mb-4", "ms-1");
+    cancelBtn.textContent = "Cancel";
+    btnContainer.appendChild(cancelBtn);
+    cancelBtn.addEventListener("click", () => {
+      editButton.children[0].removeAttribute("hidden");
+      editContainer.style.display = "none";
+      cancelBtn.remove();
+    });
+  });
 }
 //<label for="bio" class="form-label">Bio:</label>
 //<input type="text" id="bio" name="bio" class="form-control mb-3">
