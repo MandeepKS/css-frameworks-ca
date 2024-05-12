@@ -23,8 +23,6 @@ export async function updateProfile(profileData) {
       method,
       body: JSON.stringify(profileData),
     });
-    console.log(response);
-    console.log(profileData.name);
     return await response.json();
   } catch (error) {
     console.log(error);
