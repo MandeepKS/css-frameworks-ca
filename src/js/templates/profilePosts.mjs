@@ -1,13 +1,15 @@
 // import { displayPosts } from "./api/posts/display.mjs";
 import { load } from "../storage/index.mjs";
 import { removePost } from "../api/posts/delete.mjs";
-import { removeComment } from "../api/posts/commentDelete.mjs";
-import { saveReactionToPost } from "../api/posts/reactToPost.mjs";
-// import { commentToPost, getComments } from "../api/posts/index.mjs";
-import { setCreateCommentFormListener } from "../handlers/index.mjs";
-import { displayComments } from "./displayComments.mjs";
 import { displayPostByTag } from "./displayPostByTag.mjs";
-import { profilePostTemplate } from "../handlers/postTemplate.mjs";
+
+/**
+ * a function that creates a template for a post on the profile page
+ * @param {object} postData the data of the post
+ * @param {string} profileName the name of the user
+ * @param {string} avatar the avatar url of the user
+ * @returns
+ */
 
 export function createProfilePostTemplate(postData, profileName, avatar) {
   const { name } = load("profile");
@@ -42,8 +44,6 @@ export function createProfilePostTemplate(postData, profileName, avatar) {
 
   const post = document.createElement("div");
   post.classList.add("feed-example", "mb-4");
-  // const postIDlink = document.createElement("a");
-  // postIDlink.href = `/feed/post/?id=${postData.id}`;
 
   //create the container for the post
   const postContainer = document.createElement("div");
@@ -236,11 +236,6 @@ export function createProfilePostTemplate(postData, profileName, avatar) {
 }
 
 export function renderProfilePosts(name, avatar, profileData, parent) {
-  //   console.log("Received profileData:", profileData);
-
-  //   const { name, avatar, posts } = profileData;
-  //   console.log(name);
-
   const sortedPosts = profileData.sort(
     (a, b) => new Date(b.created) - new Date(a.created)
   );
@@ -260,8 +255,3 @@ export function renderProfilePosts(name, avatar, profileData, parent) {
     )
   );
 }
-
-// const url = new URL(location.href);
-// const profileName = url.searchParams.get("name") || `${name}`;
-
-// profilePostTemplate(profileName);

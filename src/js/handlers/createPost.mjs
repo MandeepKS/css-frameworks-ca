@@ -1,18 +1,14 @@
 import { createPost } from "../api/posts/create.mjs";
 import { postTemplate } from "../handlers/postTemplate.mjs";
-// import { postTemplate } from "../index.mjs";
-// export function setCreatePostFormListener() {
-//   const form = document.querySelector("#create-post");
 
-//   form.addEventListener("submit", (event) => {
-//     event.preventDefault();
-//     const form = event.target;
-//     const formData = new FormData(form);
-//     const post = Object.fromEntries(formData.entries());
-
-//     createPost(post);
-//   });
-// }
+/**
+ * Set event listener for create post form
+ * Split tags by comma and trim whitespace
+ * extract form data and sends a request to the API to create a new post
+ * renders the new post to the feed
+ * resets the form
+ * if an error occurs, logs the error to the console
+ */
 
 export function setCreatePostFormListener() {
   const form = document.querySelector("#create-post");

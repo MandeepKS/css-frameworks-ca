@@ -1,5 +1,10 @@
 import { login } from "../api/auth/login.mjs";
 
+/**
+ * Event listener for the login form
+ * Extract the form data and send a request to the API to login
+ */
+
 export function loginFormListener() {
   const form = document.querySelector("#loginForm");
 

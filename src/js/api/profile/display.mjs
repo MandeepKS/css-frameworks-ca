@@ -7,6 +7,13 @@ const posts = "_posts=true";
 const followers = "_followers=true";
 const following = "_following=true";
 
+/**
+ * Fetches profiles from the API
+ * @param {number} limit of profiles to fetch in one go
+ * @param {number} offset where to start fetching profiles
+ * @returns {promise} result of the get
+ */
+
 export async function displayProfiles(limit = 100, offset = 0) {
   try {
     const displayProfilesURL = `${API_SOCIAL}${action}`;
@@ -17,6 +24,13 @@ export async function displayProfiles(limit = 100, offset = 0) {
     console.log(error);
   }
 }
+
+/**
+ * Fetches a single profile from the API
+ * @param {string} name username of the profile to fetch
+ * @returns {promise} result of the get
+ * @throws {Error} If the name parameter is empty or an error occurs during the process.
+ */
 
 export async function displayProfile(name) {
   try {
@@ -33,7 +47,3 @@ export async function displayProfile(name) {
     console.log(error);
   }
 }
-
-// console.log(await displayProfile("fridafever"));
-// const profile = profileInfo();
-// console.log(profile.name);

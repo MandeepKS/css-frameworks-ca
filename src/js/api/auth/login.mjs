@@ -6,9 +6,13 @@ const action = "/auth/login";
 const method = "post";
 
 /**
+ * Logs in the user by checking the profile data up against the API
+ * Saves the token and profile in local storage on successful login in
+ * displays an error message on failed login
+ * redirects to the profile page on successful login
  *
  * @param {object} profile
- * @returns
+ * @throws {Error} If the login fails or an error occurs during the process.
  *
  */
 
@@ -24,7 +28,6 @@ export async function login(profile) {
       body,
     });
 
-    // const result = await response.json();
     const { accessToken, ...user } = await response.json();
     storage.save("token", accessToken);
     storage.save("profile", user);
