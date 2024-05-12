@@ -29,13 +29,15 @@ export async function login(profile) {
     });
 
     const { accessToken, ...user } = await response.json();
-    storage.save("token", accessToken);
-    storage.save("profile", user);
+    // storage.save("token", accessToken);
+    // storage.save("profile", user);
     if (!response.ok) {
       errorMsg.textContent = `Login failed`;
       alert("Login failed");
       throw new Error("Login failed");
     } else {
+      storage.save("token", accessToken);
+      storage.save("profile", user);
       alert("Login successful");
       window.location.href = "/profile/";
     }
