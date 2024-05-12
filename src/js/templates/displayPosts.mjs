@@ -139,7 +139,6 @@ export function createPostTemplate(postData) {
     exitMenu.setAttribute("aria-label", "Close");
     exitMenu.addEventListener("click", () => {
       menuContent.style.display = "none";
-      console.log("clicked close");
     });
     menuContent.append(exitMenu);
 
@@ -170,8 +169,6 @@ export function createPostTemplate(postData) {
           deleteBtn.dataset.id = postData.id;
           deleteBtn.addEventListener("click", async () => {
             const postId = deleteBtn.dataset.id;
-            console.log(postId);
-            console.log("clicked delete");
             await removePost(postId);
             window.location.reload();
           });
@@ -186,8 +183,6 @@ export function createPostTemplate(postData) {
           editBtn.dataset.id = postData.id;
           editBtn.addEventListener("click", () => {
             const postId = editBtn.dataset.id;
-            console.log(postId);
-            console.log("clicked edit");
             window.location.href = `/feed/post/edit/?id=${postId}`;
           });
         });
@@ -445,7 +440,7 @@ export function createPostTemplate(postData) {
 }
 
 export function renderPostTemplate(postDataList, parent) {
-  console.log("Received postDataList:", postDataList);
+  // console.log("Received postDataList:", postDataList);
   const filteredDataList = postDataList.filter(
     (postData) =>
       (postData.body !== null && postData.body !== "") ||
