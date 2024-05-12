@@ -1,5 +1,6 @@
 //This code sends the register form data to the api
 import { API_SOCIAL } from "../constants.mjs";
+const errorMsg = document.querySelector(".error-message");
 
 const action = "/auth/register";
 const method = "post";
@@ -27,12 +28,21 @@ export async function register(profile) {
     const result = await response.json();
     console.log(result);
     if (!response.ok) {
-      console.log(result.errors[0].message);
-      alert(result.errors[0].message);
-      throw new Error("Register failed");
+      errorMsg.removeAttribute("hidden");
+      errorMsg.classList.add("bg-danger");
+      errorMsg.textContent = `Register failed: ${result.errors[0].message}`;
+      throw new Error("Register failed: " + result.errors[0].message);
     } else {
-      alert("You have successfully registered! Please login to continue.");
-      window.location.href = "/profile/login/";
+      errorMsg.removeAttribute("hidden");
+      if (errorMsg.classList.contains("bg-danger")) {
+        errorMsg.classList.remove("bg-danger");
+      }
+      errorMsg.classList.add("bg-success");
+      errorMsg.textContent = `Register successful, redirecting to login page`;
+      //redirect to login page after 4 seconds
+      setTimeout(() => {
+        window.location.href = "/profile/login/";
+      }, 4000);
     }
     return result;
   } catch (error) {

@@ -46,7 +46,9 @@ padding-right: 0px;
                                     <label for="password" class="form-label">Password:</label>
                                     <input type="password" name="password" class="form-control" id="password"
                                         aria-required="true" minlength="8" required>
-                                    <p class="error-message"></p>
+                                    <div class="error-container">
+                                        <p class="error-message p-2 text-white text-center" hidden></p>
+                                    </div>
                                 </div>
                                 <div class="sign-in d-flex flex-wrap align-items-center">
                                     <button type="submit" class="btn btn-primary">LOG IN</button>
