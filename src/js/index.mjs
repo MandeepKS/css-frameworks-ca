@@ -37,23 +37,24 @@ const tag = url.searchParams.get("tag");
 switch (path) {
   case "/profile/login/":
     handlers.loginFormListener();
+    handlers.loggedInStatus();
     break;
   case "/profile/register/":
     handlers.registerFormListener();
+    handlers.loggedInStatus();
     break;
   case "/feed/":
-    handlers.loggedInStatus();
+    handlers.loggedOutStatus();
     handlers.setCreatePostFormListener();
     handlers.postTemplate();
     // handlers.setPostMenuDeleteBtnListener();
     handlers.setCreateCommentFormListener();
-    handlers.searchProfile();
+    handlers.searchFeed();
     handlers.filterPosts();
-    // handlers.searchResult();
     displayUsername();
     break;
   case "/profile/":
-    handlers.loggedInStatus();
+    handlers.loggedOutStatus();
     const user = loggedIn.name;
     displayUsername();
     templates.renderProfile(user);
@@ -64,18 +65,18 @@ switch (path) {
     // handlers.setPostMenuListener();
     break;
   case `/profile/?name=${name}`:
-    handlers.loggedInStatus();
+    handlers.loggedOutStatus();
     templates.renderProfile(name);
     // handlers.setFollowBtnListener();
     // displayUsername();
     break;
   case "/feed/post/":
-    handlers.loggedInStatus();
+    handlers.loggedOutStatus();
     displayUsername();
     templates.displaySinglePost();
     break;
   case "/feed/post/edit/":
-    handlers.loggedInStatus();
+    handlers.loggedOutStatus();
     handlers.setUpdatePostFormListener();
     displayUsername();
     break;

@@ -5,7 +5,7 @@
  * if no match is found, a message is displayed under the search bar
  */
 
-export function searchProfile() {
+export function searchFeed() {
   const searchContainer = document.querySelector(".search-container");
   const searchForm = document.querySelector("#search-form");
   const searchInput = document.querySelector("#searchTerm");
