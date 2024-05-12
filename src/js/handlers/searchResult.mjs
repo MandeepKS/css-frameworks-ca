@@ -27,7 +27,7 @@ export function searchProfile() {
 
     const searchTerm = searchInput.value.trim().toLowerCase();
     if (searchTerm === "") {
-      searchInput.placeholder = "Enter a name to search";
+      searchInput.placeholder = "Enter something to search";
       return;
     }
 
