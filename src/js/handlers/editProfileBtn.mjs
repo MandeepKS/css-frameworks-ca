@@ -1,3 +1,8 @@
+/**
+ * Set event listener for edit profile button
+ * when clicked, display the edit profile form and a cancel button to close the form
+ */
+
 export async function setEditProfileBtnListener() {
   const editButton = document.querySelector(".edit-button");
   if (!editButton) {

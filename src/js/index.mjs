@@ -45,7 +45,7 @@ switch (path) {
     handlers.loggedInStatus();
     handlers.setCreatePostFormListener();
     handlers.postTemplate();
-    handlers.setPostMenuDeleteBtnListener();
+    // handlers.setPostMenuDeleteBtnListener();
     handlers.setCreateCommentFormListener();
     handlers.searchProfile();
     handlers.filterPosts();

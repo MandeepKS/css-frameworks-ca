@@ -1,16 +1,15 @@
-import { load } from "../storage/index.mjs";
 import { postTemplate } from "./postTemplate.mjs";
-// import { profilePostTemplate } from "./postTemplate.mjs";
 import { mediaPostTemplate } from "./postTemplate.mjs";
-// import { mediaProfilePostTemplate } from "./postTemplate.mjs";
-import { load as profileName } from "../storage/index.mjs";
 const filterAllBtn = document.querySelector("#radioWoopsies");
 const filterMediaBtn = document.querySelector("#radioReplies");
 const feedPosts = document.querySelector(".feed-posts");
 const path = location.pathname;
-// const name =
-//   new URL(location.href).searchParams.get("name") ||
-//   profileName("profile").name;
+
+/**
+ * Filter posts in feed by media or all posts
+ * based on the radio button checked/unchecked status
+ * default is all posts
+ */
 
 export function filterPosts() {
   filterAllBtn.addEventListener("click", () => {
@@ -24,10 +23,8 @@ export function filterPosts() {
     if (path === "/feed/") {
       postTemplate();
     }
-    // else if (path === "/profile/") {
-    //   profilePostTemplate(name);
-    // }
   });
+
   filterMediaBtn.addEventListener("click", () => {
     // add checked attribute to the radio button
     filterMediaBtn.setAttribute("checked", "");
@@ -37,8 +34,5 @@ export function filterPosts() {
     if (path === "/feed/") {
       mediaPostTemplate();
     }
-    // else if (path === "/profile/") {
-    //   mediaProfilePostTemplate(name);
-    // }
   });
 }

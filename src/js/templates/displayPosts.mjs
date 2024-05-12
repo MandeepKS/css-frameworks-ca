@@ -8,6 +8,15 @@ import { setCreateCommentFormListener } from "../handlers/index.mjs";
 import { displayComments } from "./displayComments.mjs";
 import { displayPostByTag } from "./displayPostByTag.mjs";
 
+/**
+ * a function that creates a template for a post
+ * @param {object} postData the data of the post to be displayed
+ * builds and appends all elements of the post to the post template
+ * @returns {HTMLDivElement} the post template
+ *
+ * I know this file is way to long, but I'm not sure how to split it up
+ */
+
 export function createPostTemplate(postData) {
   const { name } = load("profile");
   const avatar = postData.author.avatar;
@@ -130,7 +139,6 @@ export function createPostTemplate(postData) {
     exitMenu.setAttribute("aria-label", "Close");
     exitMenu.addEventListener("click", () => {
       menuContent.style.display = "none";
-      console.log("clicked close");
     });
     menuContent.append(exitMenu);
 
@@ -161,8 +169,6 @@ export function createPostTemplate(postData) {
           deleteBtn.dataset.id = postData.id;
           deleteBtn.addEventListener("click", async () => {
             const postId = deleteBtn.dataset.id;
-            console.log(postId);
-            console.log("clicked delete");
             await removePost(postId);
             window.location.reload();
           });
@@ -177,8 +183,6 @@ export function createPostTemplate(postData) {
           editBtn.dataset.id = postData.id;
           editBtn.addEventListener("click", () => {
             const postId = editBtn.dataset.id;
-            console.log(postId);
-            console.log("clicked edit");
             window.location.href = `/feed/post/edit/?id=${postId}`;
           });
         });
@@ -253,6 +257,7 @@ export function createPostTemplate(postData) {
     "d",
     "M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105"
   );
+  commentsIcon.style.cursor = "pointer";
   commentsIcon.append(commentsPath);
   comments.append(commentsIcon, postData.comments.length);
 
@@ -349,15 +354,13 @@ export function createPostTemplate(postData) {
 
         deleteComment.addEventListener("click", async () => {
           const commentId = commentItem.dataset.commentId;
-          console.log(commentId);
-          console.log("clicked delete comment");
+
           await removeComment(postData.id, commentId);
           commentItem.remove();
           //if the comment ul list is empty, display a comment that says no comments
           if (commentsList.children.length === 0) {
             postCommentsContainer.textContent = "No comments";
           }
-          // window.location.reload();
         });
       }
 
@@ -421,8 +424,6 @@ export function createPostTemplate(postData) {
     reactionsIcon.removeAttribute("bi-heart");
     reactionsIcon.setAttribute("class", "bi-heart-fill");
     reactionsIcon.style.color = "pink";
-
-    console.log("Heart given to post");
     reactionsTotalCount.textContent = totalCount + 1;
   });
 
@@ -439,7 +440,7 @@ export function createPostTemplate(postData) {
 }
 
 export function renderPostTemplate(postDataList, parent) {
-  console.log("Received postDataList:", postDataList);
+  // console.log("Received postDataList:", postDataList);
   const filteredDataList = postDataList.filter(
     (postData) =>
       (postData.body !== null && postData.body !== "") ||
@@ -447,10 +448,3 @@ export function renderPostTemplate(postDataList, parent) {
   );
   parent.append(...filteredDataList.map(createPostTemplate));
 }
-
-// export function renderPostsByProfile(posts, profileName) {
-//   const profilePosts = posts.filter(
-//     (post) => post.author.name === profileName && post.body !== null
-//   );
-//   feedPosts.append(...profilePosts.map(createPostTemplate));
-// }

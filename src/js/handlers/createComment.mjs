@@ -1,8 +1,14 @@
 import { commentToPost } from "../api/posts/commentToPost.mjs";
 
+/**
+ * Set the event listener for the create comment form
+ * extract the form data and send a request to the API to create a comment
+ * If the comment is created successfully, display a success message and reload the page
+ * If the comment fails to create, display an error message and reload the page
+ */
+
 export function setCreateCommentFormListener() {
   const form = document.querySelector(".comment-form");
-  const commentsList = document.querySelector(".comments-list");
 
   if (form) {
     const postId = form.getAttribute("data-form-id");

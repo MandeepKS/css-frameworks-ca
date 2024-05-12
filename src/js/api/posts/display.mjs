@@ -6,6 +6,13 @@ const author = "_author=true";
 const comments = "&_comments=true";
 const reactions = "&_reactions=true";
 
+/**
+ * Fetches all posts from the API
+ *
+ * @throws {Error} If the get fails or an error occurs during the process.
+ * @returns {promise} The result of the get
+ */
+
 export async function displayPosts() {
   try {
     const displayPostsURL = `${API_SOCIAL}${action}?${author}${comments}${reactions}`;
@@ -16,6 +23,14 @@ export async function displayPosts() {
     console.log(error);
   }
 }
+
+/**
+ * Fetches a single post from the API
+ *
+ * @param {string} id - The id of the post
+ * @throws {Error} If the get fails or an error occurs during the process.
+ * @returns {promise} The result of the get
+ */
 
 export async function displayPost(id) {
   try {
@@ -31,6 +46,14 @@ export async function displayPost(id) {
     console.log(error);
   }
 }
+
+/**
+ * Fetches all posts by a specific tag from the API
+ *
+ * @param {string} tag - The tag
+ * @throws {Error} If the get fails or an error occurs during the process.
+ * @returns {promise} The result of the get
+ */
 
 export async function displayPostsByTag(tag) {
   try {

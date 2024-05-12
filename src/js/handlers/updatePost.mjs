@@ -1,10 +1,25 @@
 import { updatePost } from "../api/posts/index.mjs";
 import { displayPost } from "../api/posts/display.mjs";
 
+/**
+ * Set listener for update post form
+ * checks if the form exists
+ * Extract the form data and send a request to the API to update the post
+ * @param {object} post - The post data to be updated
+ * @param {string} post.id - The id of the post
+ * @param {string} post.title - The title of the post
+ * @param {string} post.body - The body of the post
+ * @param {string} post.media - The media of the post
+ * @param {string} post.tags - The tags of the post
+ * @param {Array} postData - The data that gets sent to the API
+ * gives the postFormId a value of the postId
+ * Redirects to the post page after updating the post
+ *
+ */
+
 export async function setUpdatePostFormListener() {
   const form = document.querySelector("#update-post");
   if (form) {
-    console.log(form);
     const url = new URL(location.href);
     const postId = url.searchParams.get("id");
     const post = await displayPost(postId);
@@ -18,8 +33,6 @@ export async function setUpdatePostFormListener() {
     tags.value = post.tags;
     const postFormId = form.querySelector(".post-id");
     postFormId.value = postId;
-    console.log(postId);
-    console.log(post);
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -34,14 +47,11 @@ export async function setUpdatePostFormListener() {
           postData[key] = value;
         }
       }
-      // const post = Object.fromEntries(formData.entries());
 
       post.id = postId;
 
       try {
         updatePost(postData);
-        console.log(postData); // Check if profile name is fetched correctly
-        console.log("Update successful"); // Check if updateProfile function is called successfully
         window.location.href = `/feed/post/?id=${postId}`;
       } catch (error) {
         console.error("Error updating profile:", error); // Check if there are any errors during the update process

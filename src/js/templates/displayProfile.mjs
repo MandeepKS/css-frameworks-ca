@@ -10,6 +10,15 @@ import { setEditProfileBtnListener } from "../handlers/index.mjs";
 
 const profileHeader = document.querySelector(".profile-header-img");
 
+/**
+ * a function that renders the profile page
+ * if no profile is found, return
+ * if a profile is found, display the profile information
+ * @param {string} profileName name of the profile to display fetched from the URL
+ * @param {array} storage user's profile information from local storage, replaces profileName if not found in URL
+ * if an error occurs during the process, log the error
+ */
+
 export async function renderProfile() {
   const storage = load("profile");
   const url = new URL(location.href);

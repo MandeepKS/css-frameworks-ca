@@ -23,7 +23,7 @@ export function displayComments(postData) {
           "rounded",
           "p-2"
         );
-        //The avatar of the comment author works, but i get a error /feed/null 404 not found
+
         const commentAuthorAvatar = document.createElement("img");
         commentAuthorAvatar.src = comment.author.avatar;
         commentAuthorAvatar.alt = `Profile image of ${comment.author.name}`;
