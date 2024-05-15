@@ -25,7 +25,6 @@ export async function removeComment(id, commentId) {
     });
 
     return await response;
-    //removed .json() from the above return statement as it fired an error
   } catch (error) {
     console.log(error);
   }
