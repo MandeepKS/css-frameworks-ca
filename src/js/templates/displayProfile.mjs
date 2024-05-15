@@ -54,28 +54,131 @@ export async function renderProfile() {
   followStats.append(following, followers);
   followInfo.append(name, followStats);
 
-  const bio = storage.bio || "<i>No bio added by user yet.</i>";
+  const bio = storage.bio || "No bio added by user yet.";
 
   const profileContainer = document.querySelector(".profile-info");
-  profileContainer.innerHTML += `
-                            <div class="profile-img d-flex justify-content-center  start-0 end-0">
-                                <img src=${avatarURL} class="img-fluid rounded-circle object-fit-cover mt-lg-n7" alt="${profileInfo.name} profile image">
-                            </div>
-                            <p class="fw-bold fst-italic text-center pt-2">@${profileInfo.name}</p>
-                            <div class="p-3 bio text-center">
-                            <p>${bio}</p>
-                            <p>${profileInfo._count.posts} posts</p>
-                        </div>
-                        <div class="follow-button d-flex justify-content-center">
-                            <input class="col-6 col-sm-4 col-lg-6 btn btn-primary" id="followBtn" type="submit" value="Follow">
-                        </div>
-                        <div class="unfollow-button d-flex justify-content-center">
-                            <input class="col-6 col-sm-4 col-lg-6 btn btn-primary" id="unfollowBtn" type="submit" value="Unfollow" hidden>
-                        </div>
-                        <div class="edit-button d-flex justify-content-center">
-                            <input class="col-6 col-sm-4 col-lg-6 btn btn-outline-primary" type="button" hidden="hidden" value="Edit Profile">
-                        </div>
-  `;
+  // profileContainer.innerHTML += `
+  //                           <div class="profile-img d-flex justify-content-center  start-0 end-0">
+  //                               <img src=${avatarURL} class="img-fluid rounded-circle object-fit-cover mt-lg-n7" alt="${profileInfo.name} profile image">
+  //                           </div>
+  //                           <p class="fw-bold fst-italic text-center pt-2">@${profileInfo.name}</p>
+  //                           <div class="p-3 bio text-center">
+  //                           <p>${bio}</p>
+  //                           <p>${profileInfo._count.posts} posts</p>
+  //                       </div>
+  //                       <div class="follow-button d-flex justify-content-center">
+  //                           <input class="col-6 col-sm-4 col-lg-6 btn btn-primary" id="followBtn" type="submit" value="Follow">
+  //                       </div>
+  //                       <div class="unfollow-button d-flex justify-content-center">
+  //                           <input class="col-6 col-sm-4 col-lg-6 btn btn-primary" id="unfollowBtn" type="submit" value="Unfollow" hidden>
+  //                       </div>
+  //                       <div class="edit-button d-flex justify-content-center">
+  //                           <input class="col-6 col-sm-4 col-lg-6 btn btn-outline-primary" type="button" hidden="hidden" value="Edit Profile">
+  //                       </div>
+  // `;
+  // Create profile image element
+  const profileImgContainer = document.createElement("div");
+  profileImgContainer.classList.add(
+    "profile-img",
+    "d-flex",
+    "justify-content-center",
+    "start-0",
+    "end-0"
+  );
+  const profileImg = document.createElement("img");
+  profileImg.src = avatarURL;
+  profileImg.classList.add(
+    "img-fluid",
+    "rounded-circle",
+    "object-fit-cover",
+    "mt-lg-n7"
+  );
+  profileImg.alt = `${profileInfo.name} profile image`;
+  profileImgContainer.appendChild(profileImg);
+
+  // Create profile name element
+  const profileUsername = document.createElement("p");
+  profileUsername.classList.add("fw-bold", "fst-italic", "text-center", "pt-2");
+  profileUsername.textContent = `@${profileInfo.name}`;
+
+  // Create bio element
+  const bioContainer = document.createElement("div");
+  bioContainer.classList.add("p-3", "bio", "text-center");
+  const bioParagraph = document.createElement("p");
+  bioParagraph.textContent = bio;
+  const postsCount = document.createElement("p");
+  postsCount.textContent = `${profileInfo._count.posts} posts`;
+  bioContainer.appendChild(bioParagraph);
+  bioContainer.appendChild(postsCount);
+
+  // Create follow button
+  const followButtonContainer = document.createElement("div");
+  followButtonContainer.classList.add(
+    "follow-button",
+    "d-flex",
+    "justify-content-center"
+  );
+  const followButton = document.createElement("input");
+  followButton.classList.add(
+    "col-6",
+    "col-sm-4",
+    "col-lg-6",
+    "btn",
+    "btn-primary"
+  );
+  followButton.setAttribute("id", "followBtn");
+  followButton.setAttribute("type", "submit");
+  followButton.setAttribute("value", "Follow");
+  followButtonContainer.appendChild(followButton);
+
+  // Create unfollow button
+  const unfollowButtonContainer = document.createElement("div");
+  unfollowButtonContainer.classList.add(
+    "unfollow-button",
+    "d-flex",
+    "justify-content-center"
+  );
+  const unfollowButton = document.createElement("input");
+  unfollowButton.classList.add(
+    "col-6",
+    "col-sm-4",
+    "col-lg-6",
+    "btn",
+    "btn-primary"
+  );
+  unfollowButton.setAttribute("id", "unfollowBtn");
+  unfollowButton.setAttribute("type", "submit");
+  unfollowButton.setAttribute("value", "Unfollow");
+  unfollowButton.setAttribute("hidden", "hidden");
+  unfollowButtonContainer.appendChild(unfollowButton);
+
+  // Create edit button
+  const editButtonContainer = document.createElement("div");
+  editButtonContainer.classList.add(
+    "edit-button",
+    "d-flex",
+    "justify-content-center"
+  );
+  const editProfileButton = document.createElement("input");
+  editProfileButton.classList.add(
+    "col-6",
+    "col-sm-4",
+    "col-lg-6",
+    "btn",
+    "btn-outline-primary"
+  );
+  editProfileButton.setAttribute("type", "button");
+  editProfileButton.setAttribute("hidden", "hidden");
+  editProfileButton.setAttribute("value", "Edit Profile");
+  editButtonContainer.appendChild(editProfileButton);
+
+  // Append all created elements to profile container
+  profileContainer.appendChild(profileImgContainer);
+  profileContainer.appendChild(profileUsername);
+  profileContainer.appendChild(bioContainer);
+  profileContainer.appendChild(followButtonContainer);
+  profileContainer.appendChild(unfollowButtonContainer);
+  profileContainer.appendChild(editButtonContainer);
 
   // Hide/show follow/unfollow button based on user's follow status
   const unfollowBtn = document.querySelector("#unfollowBtn");
