@@ -27,7 +27,6 @@ export async function renderProfile() {
   if (profileInfo.statusCode === 404) {
     return;
   }
-  console.log(profileInfo);
   const followingList = profileInfo.following;
   const followersList = profileInfo.followers;
   profileHeader.src = profileInfo.banner || "/src/images/header-bg.png";
@@ -57,25 +56,7 @@ export async function renderProfile() {
   const bio = storage.bio || "No bio added by user yet.";
 
   const profileContainer = document.querySelector(".profile-info");
-  // profileContainer.innerHTML += `
-  //                           <div class="profile-img d-flex justify-content-center  start-0 end-0">
-  //                               <img src=${avatarURL} class="img-fluid rounded-circle object-fit-cover mt-lg-n7" alt="${profileInfo.name} profile image">
-  //                           </div>
-  //                           <p class="fw-bold fst-italic text-center pt-2">@${profileInfo.name}</p>
-  //                           <div class="p-3 bio text-center">
-  //                           <p>${bio}</p>
-  //                           <p>${profileInfo._count.posts} posts</p>
-  //                       </div>
-  //                       <div class="follow-button d-flex justify-content-center">
-  //                           <input class="col-6 col-sm-4 col-lg-6 btn btn-primary" id="followBtn" type="submit" value="Follow">
-  //                       </div>
-  //                       <div class="unfollow-button d-flex justify-content-center">
-  //                           <input class="col-6 col-sm-4 col-lg-6 btn btn-primary" id="unfollowBtn" type="submit" value="Unfollow" hidden>
-  //                       </div>
-  //                       <div class="edit-button d-flex justify-content-center">
-  //                           <input class="col-6 col-sm-4 col-lg-6 btn btn-outline-primary" type="button" hidden="hidden" value="Edit Profile">
-  //                       </div>
-  // `;
+
   // Create profile image element
   const profileImgContainer = document.createElement("div");
   profileImgContainer.classList.add(
