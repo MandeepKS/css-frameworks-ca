@@ -21,7 +21,6 @@ export async function unfollowUser(profileData) {
     const response = await authFetch(unfollowProfileURL, {
       method,
     });
-    console.log(response);
     return await response.json();
   } catch (error) {
     console.log(error);
