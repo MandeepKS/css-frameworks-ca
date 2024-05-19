@@ -13728,6 +13728,10 @@ footer {
   box-shadow: none;
 }
 
+.hidden-label {
+  display: none;
+}
+
 a {
   text-decoration: none;
   color: inherit;
