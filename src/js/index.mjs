@@ -5,6 +5,7 @@ import { displayUsername } from "./templates/displayUsername.mjs";
 // import * as post from "./api/posts/index.mjs";
 
 handlers.setLogoutListener();
+handlers.backToTopBtnHandler();
 
 const loggedIn = load("profile");
 

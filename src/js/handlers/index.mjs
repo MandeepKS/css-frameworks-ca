@@ -14,3 +14,4 @@ export * from "./filterPosts.mjs";
 export * from "./followButton.mjs";
 export * from "./unfollowBtn.mjs";
 export * from "./editProfileBtn.mjs";
+export * from "./backToTopBtn.mjs";
