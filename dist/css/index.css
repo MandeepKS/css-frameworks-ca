@@ -13674,6 +13674,7 @@ body {
   background-image: url(/src/images/footer-bubble.png);
   background-repeat: no-repeat;
   height: 60px;
+  color: white;
 }
 
 footer {
