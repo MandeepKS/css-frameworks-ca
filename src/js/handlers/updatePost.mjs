@@ -52,7 +52,9 @@ export async function setUpdatePostFormListener() {
 
       try {
         updatePost(postData);
-        window.location.href = `/feed/post/?id=${postId}`;
+        setTimeout(() => {
+          window.location.href = `/feed/post/?id=${postId}`;
+        }, 1500);
       } catch (error) {
         console.error("Error updating profile:", error); // Check if there are any errors during the update process
       }
