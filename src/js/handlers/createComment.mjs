@@ -27,14 +27,14 @@ export function setCreateCommentFormListener() {
         // reload the page after 2 seconds
         setTimeout(() => {
           window.location.reload();
-        }, 2000);
+        }, 1500);
       } catch (error) {
         console.error("Error creating post:", error);
         form.innerHTML += `<p class="bg-danger p-2 border rounded text-white">Error creating comment, please try again, realoading page!</p>`;
         // reload the page after 2 seconds
         setTimeout(() => {
           window.location.reload();
-        }, 2000);
+        }, 1500);
       }
     });
   }
