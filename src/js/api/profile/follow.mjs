@@ -21,7 +21,6 @@ export async function followUser(profileData) {
     const response = await authFetch(followProfileURL, {
       method,
     });
-    console.log(response);
     return await response.json();
   } catch (error) {
     console.log(error);
